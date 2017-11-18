@@ -20,10 +20,6 @@ var UserSchema = new Schema({
       }
     }
   },
-  role: {
-    type: String,
-    default: 'user'
-  },
   password: {
     type: String,
     required() {
@@ -257,3 +253,5 @@ UserSchema.methods = {
 
 registerEvents(UserSchema);
 export default mongoose.model('User', UserSchema);
+
+
