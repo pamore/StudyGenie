@@ -23,11 +23,12 @@ import main from './main/main.component';
 import DashboardComponent from './dashboard/dashboard.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
+import CheatSheetComponent from './cheatSheet/cheatSheet.component';
 
 import './app.css';
 
 angular.module('studyGenieApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  account, admin, 'validation.match', navbar, footer, main, constants, util, DashboardComponent
+  account, admin, 'validation.match', navbar, footer, main, constants, util, DashboardComponent, CheatSheetComponent
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

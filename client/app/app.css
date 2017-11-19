@@ -45,6 +45,7 @@
 /* Component styles are injected through gulp */
 /* inject:css */
 @import 'admin/admin.css';
+@import 'cheatSheet/cheatSheet.css';
 @import 'dashboard/dashboard.css';
 @import 'main/main.css';
 @import '../components/footer/footer.css';
