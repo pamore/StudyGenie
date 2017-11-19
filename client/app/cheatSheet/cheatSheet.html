@@ -1,0 +1,24 @@
+<div class="cheatSheetDiv">
+  <div class="CSList">
+    <ul class="CSListUL">
+      <li class="CSListli"><a href="#">Cheat Sheet 1</a></li>
+      <li class="CSListli"><a href="#">Cheat Sheet 2</a></li>
+      <li class="CSListli"><a href="#">Cheat Sheet 3</a></li>
+    </ul>
+  </div>
+
+  <div class="CSView">
+    <div class="CSViewEdit"></div>
+    This is the view of cheatSheet selected.
+  </div>
+  <div class="notesList">
+    <ul class="noteTextArea nav nav-tabs" ng-repeat="Note in cheatSheetCtrl.notesText">
+      <li class ="noteText" draggable="true" >
+        <a href="#">
+          <p><b><u>Title</u></b> : {{Note.title}}</p>
+          <p><b><u>Text Content</u></b> : {{Note.content}}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

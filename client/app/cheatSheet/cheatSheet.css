@@ -1,0 +1,97 @@
+.cheatSheetDiv{
+  display: inline-flex;
+  width:100%;
+}
+
+.CSList{
+  width: 20%;
+  border-right: thick solid #000000;
+}
+.CSListUL{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /*width: 25%;*/
+  background-color: #f1f1f1;
+  /*position: relative;*/
+  height: 100%;
+  overflow: auto;
+}
+.CSListli a{
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.CSListli a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.CSListli a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+.CSView{
+  padding:1px 16px;
+  height: 800px;
+  width: 750px;
+}
+.CSViewEdit{
+  width:100%;
+  height: 80%;
+  border-style: solid;
+  border-width: medium;
+}
+.noteTextArea{
+  overflow:auto;
+  list-style-type:none;
+}
+
+.noteText  {
+  text-align: center;
+  cursor: move;
+  list-style:none;
+  /*overflow: auto;*/
+  display: inline-block;
+  padding:25px 25px 40px 20px;
+  margin:20px auto 20px auto;
+  width:250px;
+  height:250px;
+  font:20px 'Arial', cursive;
+  line-height:1.5;
+  border:10px;
+  border-radius:3px;
+  background: -webkit-linear-gradient(#F9EFAF, #F7E98D);
+  background: -moz-linear-gradient(#F9EFAF, #F7E98D);
+  background: -o-linear-gradient(#F9EFAF, #F7E98D);
+  background: -ms-linear-gradient(#F9EFAF, #F7E98D);
+  background: linear-gradient(#F9EFAF, #F7E98D);
+  box-shadow:0 4px 6px rgba(0,0,0,0.1);
+  overflow:hidden;
+  transition:box-shadow 0.5s ease;
+  max-width:520px;
+  max-height:250px;
+}
+
+.noteText:hover { box-shadow:0 5px 8px rgba(0,0,0,0.15); }
+.noteText:focus { box-shadow:0 5px 12px rgba(0,0,0,0.2); outline:none; }
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+.noteText.dragElem {
+  opacity: 0.4;
+}
+.noteText.over {
+//border: 2px dashed #000;
+  border-top: 2px solid blue;
+}
