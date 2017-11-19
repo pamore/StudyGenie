@@ -11,7 +11,7 @@ export function Modal($rootScope, $uibModal) {
    */
   function openModal(scope = {}, modalClass = 'modal-default') {
     var modalScope = $rootScope.$new();
-
+    console.log('modal opened');
     angular.extend(modalScope, scope);
 
     return $uibModal.open({
