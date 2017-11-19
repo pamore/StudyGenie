@@ -66,9 +66,11 @@ function handleError(res, statusCode) {
 
 // Gets a list of Notess
 export function index(req, res) {
+
   return Notes.find().exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
+
 }
 
 // Gets a single Notes from the DB
@@ -88,10 +90,10 @@ export function create(req, res) {
 
 // Upserts the given Notes in the DB at the specified ID
 export function upsert(req, res) {
-  if(req.body._id) {
-    Reflect.deleteProperty(req.body, '_id');
+  if(req.body.n_id) {
+    Reflect.deleteProperty(req.body, 'n_id');
   }
-  return Notes.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+  return Notes.findOneAndUpdate({n_id: req.params.id}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
 
     .then(respondWithResult(res))
     .catch(handleError(res));
@@ -99,8 +101,8 @@ export function upsert(req, res) {
 
 // Updates an existing Notes in the DB
 export function patch(req, res) {
-  if(req.body._id) {
-    Reflect.deleteProperty(req.body, '_id');
+  if(req.body.n_id) {
+    Reflect.deleteProperty(req.body, 'n_id');
   }
   return Notes.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))

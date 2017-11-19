@@ -4,10 +4,12 @@ import mongoose from 'mongoose';
 import {registerEvents} from './notes.events';
 
 var NotesSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+  n_id: Number,
+  author_id: Number,
+  title: String,
+  content: String,
+  type: Number
 });
 
 registerEvents(NotesSchema);
-export default mongoose.model('Notes', NotesSchema);
+export default mongoose.model('Note', NotesSchema);

@@ -6,10 +6,10 @@ var controller = require('./notes.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/:id', controller.show);
+router.get('/:n_id', controller.show);
 router.post('/', controller.create);
-router.put('/:id', controller.upsert);
-router.patch('/:id', controller.patch);
-router.delete('/:id', controller.destroy);
+router.put('/:n_id', controller.upsert);
+router.patch('/:n_id', controller.patch);
+router.delete('/:n_id', controller.destroy);
 
 module.exports = router;

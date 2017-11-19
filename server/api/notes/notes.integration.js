@@ -55,12 +55,12 @@ describe('Notes API:', function() {
     });
   });
 
-  describe('GET /api/notes/:id', function() {
+  describe('GET /api/notes/:n_id', function() {
     var notes;
 
     beforeEach(function(done) {
       request(app)
-        .get(`/api/notes/${newNotes._id}`)
+        .get(`/api/notes/${newNotes.n_id}`)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -82,12 +82,12 @@ describe('Notes API:', function() {
     });
   });
 
-  describe('PUT /api/notes/:id', function() {
+  describe('PUT /api/notes/:n_id', function() {
     var updatedNotes;
 
     beforeEach(function(done) {
       request(app)
-        .put(`/api/notes/${newNotes._id}`)
+        .put(`/api/notes/${newNotes.n_id}`)
         .send({
           name: 'Updated Notes',
           info: 'This is the updated notes!!!'
@@ -114,7 +114,7 @@ describe('Notes API:', function() {
 
     it('should respond with the updated notes on a subsequent GET', function(done) {
       request(app)
-        .get(`/api/notes/${newNotes._id}`)
+        .get(`/api/notes/${newNotes.n_id}`)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -131,12 +131,12 @@ describe('Notes API:', function() {
     });
   });
 
-  describe('PATCH /api/notes/:id', function() {
+  describe('PATCH /api/notes/:n_id', function() {
     var patchedNotes;
 
     beforeEach(function(done) {
       request(app)
-        .patch(`/api/notes/${newNotes._id}`)
+        .patch(`/api/notes/${newNotes.n_id}`)
         .send([
           { op: 'replace', path: '/name', value: 'Patched Notes' },
           { op: 'replace', path: '/info', value: 'This is the patched notes!!!' }
@@ -162,10 +162,10 @@ describe('Notes API:', function() {
     });
   });
 
-  describe('DELETE /api/notes/:id', function() {
+  describe('DELETE /api/notes/:n_id', function() {
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete(`/api/notes/${newNotes._id}`)
+        .delete(`/api/notes/${newNotes.n_id}`)
         .expect(204)
         .end(err => {
           if(err) {
@@ -177,7 +177,7 @@ describe('Notes API:', function() {
 
     it('should respond with 404 when notes does not exist', function(done) {
       request(app)
-        .delete(`/api/notes/${newNotes._id}`)
+        .delete(`/api/notes/${newNotes.n_id}`)
         .expect(404)
         .end(err => {
           if(err) {
