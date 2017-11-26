@@ -11,11 +11,11 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  /*width: 25%;*/
+  width: 25%;
   background-color: #f1f1f1;
-  /*position: relative;*/
+  position: relative;
   height: 100%;
-  overflow: auto;
+  /*overflow-y: auto;*/
 }
 .CSListli a{
   display: block;
@@ -44,8 +44,13 @@
   border-style: solid;
   border-width: medium;
 }
-.noteTextArea{
+.notesList{
+  height:800px;
   overflow:auto;
+}
+
+.noteTextArea{
+  /*overflow:auto;*/
   list-style-type:none;
 }
 
