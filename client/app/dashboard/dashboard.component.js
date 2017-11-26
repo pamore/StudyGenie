@@ -4,19 +4,16 @@ const angular = require('angular');
 const uiRouter = require('angular-ui-router');
 
 import routes from './dashboard.routes';
-import Modal from '../../components/modal/modal.service';
-// import Modal from '../../components/modal/modal.service';
 
 export class DashboardComponent {
   $http;
-  // modalService;
-  notesText = [];
+  Modal;
 
   /*@ngInject*/
-  constructor($http) {
+  constructor($http, Modal) {
     this.message = 'Hello';
     this.$http = $http;
-    this.modalService = Modal;
+    this.Modal = Modal;
   }
   $onInit() {
     this.$http.get('/api/notes')
@@ -27,21 +24,10 @@ export class DashboardComponent {
   }
   openNote(note) {
     console.log('noteeee=' + note.n_id);
-    // this.modalService.open(note).result.then((result) => {
-    //   this.closeResult = `Closed with: ${result}`;
-    // });
+    let openModal = this.Modal.confirm.delete(() => console.log('modal'));
+    openModal();
   }
-  // getDismissReason(reason: any): string {
-  //   if(reason === ModalDismissReasons.ESC) {
-  //     return 'by pressing ESC';
-  //   } else if(reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //     return 'by clicking on a backdrop';
-  //   } else {
-  //     return `with: ${reason}`;
-  //   }
-  // }
 }
-
 export default angular.module('studyGenieApp.dashboard', [uiRouter])
   .config(routes)
   .component('dashboard', {

@@ -3,6 +3,7 @@
 import angular from 'angular';
 
 export function Modal($rootScope, $uibModal) {
+  'ngInject';
   /**
    * Opens a modal
    * @param  {Object} scope      - an object to be merged with modal's scope
@@ -38,16 +39,16 @@ export function Modal($rootScope, $uibModal) {
          * @param  {String} name   - name or info to show on modal
          * @param  {All}           - any additional args are passed straight to del callback
          */
-        return function(...args) {
-          var slicedArgs = Reflect.apply(Array.prototype.slice, args);
-          var name = slicedArgs.shift();
+        return function() {
+          // var slicedArgs = Reflect.apply(Array.prototype.slice, args);
+          // var name = slicedArgs.shift();
           var deleteModal;
 
           deleteModal = openModal({
             modal: {
               dismissable: true,
               title: 'Confirm Delete',
-              html: `<p>Are you sure you want to delete <strong>${name}</strong> ?</p>`,
+              html: `<p>Are you sure you want to delete <strong></strong>?</p>`,
               buttons: [{
                 classes: 'btn-danger',
                 text: 'Delete',
@@ -64,8 +65,9 @@ export function Modal($rootScope, $uibModal) {
             }
           }, 'modal-danger');
 
-          deleteModal.result.then(function(event) {
-            Reflect.apply(del, event, slicedArgs);
+          deleteModal.result.then(function() {
+            console.log('reached');
+            // Reflect.apply(del, event);
           });
         };
       }
