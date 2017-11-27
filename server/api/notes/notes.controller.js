@@ -67,7 +67,7 @@ function handleError(res, statusCode) {
 // Gets a list of Notess
 export function index(req, res) {
 
-  return Notes.find().exec()
+  return Notes.find().limit(10).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 
@@ -75,7 +75,7 @@ export function index(req, res) {
 
 // Gets a single Notes from the DB
 export function show(req, res) {
-  return Notes.findById(req.params.id).exec()
+  return Notes.findById(req.params.id).limit(10).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
