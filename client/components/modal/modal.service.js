@@ -42,32 +42,68 @@ export function Modal($rootScope, $uibModal) {
         return function() {
           // var slicedArgs = Reflect.apply(Array.prototype.slice, args);
           // var name = slicedArgs.shift();
-          var deleteModal;
+          // var deleteModal;
+          //
+          // deleteModal = openModal({
+          //   modal: {
+          //     dismissable: true,
+          //     title: 'Confirm Delete',
+          //     html: `<p>Are you sure you want to delete <strong>${name}</strong>?</p>`,
+          //     buttons: [{
+          //       classes: 'btn-danger',
+          //       text: 'Delete',
+          //       click(e) {
+          //         deleteModal.close(e);
+          //       }
+          //     }, {
+          //       classes: 'btn-default',
+          //       text: 'Cancel',
+          //       click(e) {
+          //         deleteModal.dismiss(e);
+          //       }
+          //     }]
+          //   }
+          // }, 'modal-danger');
+          //
+          // deleteModal.result.then(function(event) {
+          //   console.log('reached');
+          //   Reflect.apply(del, event, slicedArgs);
+          // });
+          var args = Array.prototype.slice.call(arguments),
+            note_id = args.shift(),
+            title = args.shift(),
+            content = args.shift(),
+            deleteModal;
 
+          var formData = {};
+          formData.title = title;
+          formData.content = content;
+          console.log(title);
+          console.log(content);
           deleteModal = openModal({
             modal: {
+              formData: formData,
               dismissable: true,
-              title: 'Confirm Delete',
-              html: `<p>Are you sure you want to delete <strong></strong>?</p>`,
+              title: 'View/Delete Note',
+              html: '<p> View/Edit the note with id : <strong>' + note_id + '</strong></p>',
               buttons: [{
                 classes: 'btn-danger',
-                text: 'Delete',
-                click(e) {
+                text: 'Submit',
+                click: function(e) {
                   deleteModal.close(e);
                 }
               }, {
                 classes: 'btn-default',
                 text: 'Cancel',
-                click(e) {
+                click: function(e) {
                   deleteModal.dismiss(e);
                 }
               }]
             }
           }, 'modal-danger');
 
-          deleteModal.result.then(function() {
-            console.log('reached');
-            // Reflect.apply(del, event);
+          deleteModal.result.then(function(event) {
+            del.apply(event, [formData, note_id]);
           });
         };
       }

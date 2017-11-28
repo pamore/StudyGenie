@@ -19,13 +19,24 @@ export class DashboardComponent {
     this.$http.get('/api/notes')
       .then(response => {
         this.notesText = response.data;
-        // console.log('Notes text component' + response.data);
       });
   }
+
   openNote(note) {
+    var http = this.$http;
     console.log('noteeee=' + note.n_id);
-    let openModal = this.Modal.confirm.delete(() => console.log('modal'));
-    openModal();
+    let openModal = this.Modal.confirm.delete(function(formData, note_id) {
+      // formData contains the data collected in the modal
+      // console.log(formData.title);
+      // console.log(formData.content);
+      // console.log(note_id);
+      note.title = formData.title;
+      note.content = formData.content;
+      http.put(`/api/notes/${note_id}`, note).then(response => {
+        console.log(response.data);
+      });
+    });
+    openModal(note.n_id, note.title, note.content);
   }
 }
 export default angular.module('studyGenieApp.dashboard', [uiRouter])

@@ -90,10 +90,10 @@ export function create(req, res) {
 
 // Upserts the given Notes in the DB at the specified ID
 export function upsert(req, res) {
-  if(req.body.n_id) {
-    Reflect.deleteProperty(req.body, 'n_id');
-  }
-  return Notes.findOneAndUpdate({n_id: req.params.id}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+  // if(req.body.n_id) {
+  //   Reflect.deleteProperty(req.body, 'n_id');
+  // }
+  return Notes.findOneAndUpdate({n_id: req.body.n_id}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
 
     .then(respondWithResult(res))
     .catch(handleError(res));
