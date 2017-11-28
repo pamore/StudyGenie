@@ -9,9 +9,11 @@ import path from 'path';
 
 export default function(app) {
   // Insert routes below
+  // app.use('/api/elasticsearch-apis', require('./api/elasticsearch-api'));
   app.use('/api/notes', require('./api/notes'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
+  app.use('/api/elasticsearch', require('./api/elasticsearch/documents'));
 
   app.use('/auth', require('./auth').default);
 
