@@ -14,7 +14,7 @@
   <div class="notesList">
 
     <ul class="noteTextArea nav nav-tabs" ng-repeat="Note in cheatSheetCtrl.notesText">
-      <li class ="noteText" draggable="true" >
+      <li class ="noteText" draggable="true" ng-click="cheatSheetCtrl.openNote(Note)">
         <a href="#">
           <p><b><u>Title</u></b> : {{Note.title}}</p>
           <p><b><u>Text Content</u></b> : {{Note.content}}</p>

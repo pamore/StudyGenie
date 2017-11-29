@@ -24,7 +24,7 @@ export class DashboardComponent {
 
   openNote(note) {
     var http = this.$http;
-    console.log('noteeee=' + note.n_id);
+    console.log('note opened with id =' + note.n_id);
     let openModal = this.Modal.confirm.delete(function(formData, note_id) {
       // formData contains the data collected in the modal
       // console.log(formData.title);
