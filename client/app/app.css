@@ -48,6 +48,7 @@
 @import 'cheatSheet/cheatSheet.css';
 @import 'dashboard/dashboard.css';
 @import 'main/main.css';
+@import 'profile/profile.css';
 @import '../components/footer/footer.css';
 @import '../components/modal/modal.css';
 @import '../components/oauth-buttons/oauth-buttons.css';

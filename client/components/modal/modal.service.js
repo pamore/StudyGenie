@@ -1,6 +1,6 @@
 'use strict';
 
-import angular from 'angular';
+import angular from "angular";
 
 export function Modal($rootScope, $uibModal) {
   'ngInject';
@@ -39,7 +39,7 @@ export function Modal($rootScope, $uibModal) {
          * @param  {String} name   - name or info to show on modal
          * @param  {All}           - any additional args are passed straight to del callback
          */
-        return function() {
+        return function () {
           // var slicedArgs = Reflect.apply(Array.prototype.slice, args);
           // var name = slicedArgs.shift();
           // var deleteModal;
@@ -69,18 +69,21 @@ export function Modal($rootScope, $uibModal) {
           //   console.log('reached');
           //   Reflect.apply(del, event, slicedArgs);
           // });
-          var args = Array.prototype.slice.call(arguments),
-            note_id = args.shift(),
-            title = args.shift(),
-            content = args.shift(),
-            deleteModal;
+          let args;
+          let note_id;
+          let title;
+          let content;
+          args = Array.prototype.slice.call(arguments);
+          note_id = args.shift();
+          title = args.shift();
+          content = args.shift();
 
           var formData = {};
           formData.title = title;
           formData.content = content;
           console.log(title);
           console.log(content);
-          deleteModal = openModal({
+          let deleteModal = openModal({
             modal: {
               formData: formData,
               dismissable: true,
