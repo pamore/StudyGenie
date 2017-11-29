@@ -3,7 +3,7 @@
 # These files are text and should be normalized (Convert crlf => lf)
 *.php  text
 *.css  text
-*.js   text
+*.js   text eol=lf
 *.htm  text
 *.html text
 *.xml  text
