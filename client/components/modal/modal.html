@@ -1,3 +1,4 @@
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <div class="modal-header">
   <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
   <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
@@ -5,21 +6,86 @@
 <div class="modal-body">
   <p ng-if="modal.text" ng-bind="modal.text"></p>
   <div ng-if="modal.html" ng-bind-html="modal.html"></div>
-  <form class="form" name="formData">
+  <form class="form rating-form" name="formData">
     <div class="form-group">
       <label>Title</label>
       <input class="form-control" type="text" ng-model="modal.formData.title"/>
     </div>
-    <div class="form-group">
-      <label>Rating</label>
-      <rating max="5" ng-model="modal.formData.rating"></rating>
-    </div>
+
     <div class="form-group">
       <label>Content</label>
       <textarea class="form-control" type="text" rows="3" ng-model="modal.formData.content"></textarea>
     </div>
+
+    <div class="form-group">
+      <label>Rating</label>
+      <!--<rating max="5" ng-model="modal.formData.rating"></rating>-->
+      <fieldset class="form-group">
+
+        <legend class="form-legend">Rating:</legend>
+
+        <div class="form-item">
+
+          <input id="rating-5" name="rating" type="radio" value="5" />
+          <label for="rating-5" data-value="5">
+        <span class="rating-star">
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star"></i>
+        </span>
+            <span class="ir">5</span>
+          </label>
+          <input id="rating-4" name="rating" type="radio" value="4" />
+          <label for="rating-4" data-value="4">
+        <span class="rating-star">
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star"></i>
+        </span>
+            <span class="ir">4</span>
+          </label>
+          <input id="rating-3" name="rating" type="radio" value="3" />
+          <label for="rating-3" data-value="3">
+        <span class="rating-star">
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star"></i>
+        </span>
+            <span class="ir">3</span>
+          </label>
+          <input id="rating-2" name="rating" type="radio" value="2" />
+          <label for="rating-2" data-value="2">
+        <span class="rating-star">
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star"></i>
+        </span>
+            <span class="ir">2</span>
+          </label>
+          <input id="rating-1" name="rating" type="radio" value="1" />
+          <label for="rating-1" data-value="1">
+        <span class="rating-star">
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star"></i>
+        </span>
+            <span class="ir">1</span>
+          </label>
+
+          <!--<div class="form-action">-->
+            <!--<input class="btn-reset" type="reset" value="Reset" />-->
+          <!--</div>-->
+
+          <!--<div class="form-output">-->
+            <!--? / 5-->
+          <!--</div>-->
+        </div>
+      </fieldset>
+    </div>
+    <br/>
+
   </form>
+  <!--&lt;!&ndash; RATING - Form &ndash;&gt;-->
+  <!--<form class="rating-form" action="#" method="post" name="rating-movie">-->
+  <!--</form>-->
+  <!--<br/>-->
 </div>
 <div class="modal-footer">
-  <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>
+  <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)"
+          ng-bind="button.text" class="btn"></button>
 </div>
