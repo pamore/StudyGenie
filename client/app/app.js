@@ -27,13 +27,14 @@ import CheatSheetComponent from './cheatSheet/cheatSheet.component';
 import Modal from '../components/modal/modal.service';
 import ProfileComponent from './profile/profile.component';
 import VisualizationsComponent from './visualizations/visualizations.component';
+import GroupsComponent from './groups/groups.component';
 // import ProfilePageComponent from './profilePage/profilePage.component';
 
 import './app.css';
 
 angular.module('studyGenieApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
   account, admin, 'validation.match', navbar, footer, main, constants, util,
-  DashboardComponent, CheatSheetComponent, Modal, ProfileComponent, VisualizationsComponent
+  DashboardComponent, CheatSheetComponent, Modal, ProfileComponent, VisualizationsComponent, GroupsComponent
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
