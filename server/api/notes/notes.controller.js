@@ -67,7 +67,7 @@ function handleError(res, statusCode) {
 // Gets a list of Notess
 export function index(req, res) {
 
-  return Notes.find().limit(10).exec()
+  return Notes.find().limit(12).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 

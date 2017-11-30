@@ -8,7 +8,7 @@ import routes from './dashboard.routes';
 export class DashboardComponent {
   $http;
   Modal;
-
+  individualnotesText;
   /*@ngInject*/
   constructor($http, Modal) {
     this.message = 'Hello';
@@ -19,6 +19,8 @@ export class DashboardComponent {
     this.$http.get('/api/notes')
       .then(response => {
         this.notesText = response.data;
+        let temp = this.notesText;
+        this.individualnotesText = temp.slice(5);
       });
   }
 

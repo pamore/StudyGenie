@@ -2,7 +2,6 @@
 const angular = require('angular');
 const Chart = require('angular-chart.js/angular-chart');
 const uiRouter = require('angular-ui-router');
-
 import routes from './visualizations.routes';
 
 export class VisualizationsComponent {
@@ -11,6 +10,8 @@ export class VisualizationsComponent {
   barChartdata;
   radarChartlabels;
   radarChartdata;
+  verticaldata;
+  verticallabels;
   type;
   'ngInject';
   constructor() {
@@ -24,6 +25,11 @@ export class VisualizationsComponent {
 
     this.radarChartdata = [
       [65, 59, 90, 81, 56, 55, 40]
+    ];
+    this.verticallabels = ['TestUser1', 'TestUser1', 'TestUser2', 'TestUser3', 'TestUser4', 'TestUser5', 'TestUser6'];
+
+    this.verticaldata = [
+      [25, 16, 13, 9, 7, 6, 3]
     ];
     this.type = 'radar';
   }
