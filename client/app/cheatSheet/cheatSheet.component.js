@@ -2,19 +2,22 @@
 const angular = require('angular');
 
 const uiRouter = require('angular-ui-router');
-
+const dragDrop = require('angular-drag-drop');
 import routes from './cheatSheet.routes';
 
 export class CheatSheetComponent {
   $http;
   notesText = [];
+  cheatSheetList = [];
   dragSrcEl = null;
   Modal;
-  /*@ngInject*/
+  selected;
   constructor($http, Modal) {
+    'ngInject';
     this.message = 'Hello';
     this.$http = $http;
     this.Modal = Modal;
+    this.selected = 1;
   }
   $onInit() {
     this.$http.get('/api/notes')
@@ -22,6 +25,13 @@ export class CheatSheetComponent {
         this.notesText = response.data;
         // console.log('Notes text component' + response.data);
       });
+  }
+  deleteList(selected) {
+    this.selected = selected;
+    this.cheatSheetList = [];
+  }
+  onDrop(event, dragdata) {
+    this.cheatSheetList.push(dragdata);
   }
   openNote(note) {
     var http = this.$http;
@@ -40,8 +50,9 @@ export class CheatSheetComponent {
     openModal(note.n_id, note.title, note.content);
   }
 }
+// CheatSheetComponent.$inject = ['$http', dragDrop, uiRouter];
 
-export default angular.module('studyGenieApp.cheatSheet', [uiRouter])
+export default angular.module('studyGenieApp.cheatSheet', [uiRouter, dragDrop])
   .config(routes)
   .component('cheatSheet', {
     template: require('./cheatSheet.html'),

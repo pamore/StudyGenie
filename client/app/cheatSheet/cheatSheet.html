@@ -1,20 +1,34 @@
 <div class="cheatSheetDiv">
   <div class="CSList">
     <ul class="CSListUL">
-      <li class="CSListli"><a href="#">Cheat Sheet 1</a></li>
-      <li class="CSListli"><a href="#">Cheat Sheet 2</a></li>
-      <li class="CSListli"><a href="#">Cheat Sheet 3</a></li>
+      <li class="CSListli" ><a href="#"  ng-class="{'active': cheatSheetCtrl.selected == 1}" ng-click="cheatSheetCtrl.deleteList(1)">Cheat Sheet 1</a></li>
+      <li class="CSListli" ><a href="#" ng-class="{'active': cheatSheetCtrl.selected == 2}" ng-click="cheatSheetCtrl.deleteList(2)">Cheat Sheet 2</a></li>
+      <li class="CSListli" ><a href="#" ng-class="{'active': cheatSheetCtrl.selected == 3}" ng-click="cheatSheetCtrl.deleteList(3)">Cheat Sheet 3</a></li>
     </ul>
   </div>
 
-  <div class="CSView">
-    <div class="CSViewEdit"></div>
-    This is the view of cheatSheet selected.
+  <div  class="CSView">
+    <div class="notesList">
+      <div >
+      </div>
+    <div drop-container  on-drop="cheatSheetCtrl.onDrop($event, $dragData)" class="dr-tile-empty">
+      <ul class="noteTextArea nav nav-tabs" ng-repeat="cheatsheetNote in cheatSheetCtrl.cheatSheetList" >
+        <li class ="noteText dr-tile-img" ng-click="cheatSheetCtrl.openNote(cheatsheetNote)">
+          <a href="#">
+            <p><b><u>Title</u></b> : {{cheatsheetNote.title}}</p>
+            <p><b><u>Text Content</u></b> : {{cheatsheetNote.content}}</p>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+    </div>
   </div>
   <div class="notesList">
-
+  <div >
+  </div>
     <ul class="noteTextArea nav nav-tabs" ng-repeat="Note in cheatSheetCtrl.notesText">
-      <li class ="noteText" draggable="true" ng-click="cheatSheetCtrl.openNote(Note)">
+      <li class ="noteText dr-tile-img" drag-container="true" drag-data="Note" ng-click="cheatSheetCtrl.openNote(Note)">
         <a href="#">
           <p><b><u>Title</u></b> : {{Note.title}}</p>
           <p><b><u>Text Content</u></b> : {{Note.content}}</p>
