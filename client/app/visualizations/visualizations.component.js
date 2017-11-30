@@ -1,6 +1,7 @@
 'use strict';
 const angular = require('angular');
 const Chart = require('angular-chart.js/angular-chart');
+const vis = require('vis');
 const uiRouter = require('angular-ui-router');
 import routes from './visualizations.routes';
 
@@ -14,6 +15,12 @@ export class VisualizationsComponent {
   verticaldata;
   verticallabels;
   verticalcolors;
+  networkdata;
+  networkedges;
+  networkcontainer;
+  networknodes;
+  networkoptions;
+  network;
   type;
   'ngInject';
   constructor() {
@@ -33,6 +40,32 @@ export class VisualizationsComponent {
     this.verticalcolors = ['rgb(250,2,10)', 'rgb(200,109,33)', 'rgb(104,154,154)', 'rgb(159,20,0)', 'rgb(25,190,33)', 'rgb(154,15,154)', 'rgb(154,154,15)'];
     this.verticaldata = [25, 16, 13, 9, 7, 6, 3];
 
+    this.networknodes = new vis.DataSet([
+      {id: 1, label: 'User 1'},
+      {id: 2, label: 'User 2'},
+      {id: 3, label: 'User 3'},
+      {id: 4, label: 'User 4'},
+      {id: 5, label: 'User 5'}
+    ]);
+    this.networkedges = new vis.DataSet([
+      {from: 1, to: 2},
+      {from: 2, to: 5},
+      {from: 3, to: 5},
+      {from: 3, to: 4},
+      {from: 3, to: 2},
+      {from: 2, to: 4}
+    ]);
+    this.networkcontainer = document.getElementById('mynetwork');
+    this.networkdata = {
+      nodes: this.networknodes,
+      edges: this.networkedges
+    };
+    this.networkoptions = {
+      interaction: {
+        navigationButtons: true
+      }
+    };
+    this.network = new vis.Network(this.networkcontainer, this.networkdata, this.networkoptions);
   }
 
   toggle = function() {
