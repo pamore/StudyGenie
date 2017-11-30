@@ -45,7 +45,12 @@ export class VisualizationsComponent {
       {id: 2, label: 'TestUser 2'},
       {id: 3, label: 'TestUser 3'},
       {id: 4, label: 'TestUser 4'},
-      {id: 5, label: 'TestUser 5'}
+      {id: 5, label: 'TestUser 5'},
+      {id: 6, label: 'TestUser 6'},
+      {id: 7, label: 'TestUser 7'},
+      {id: 8, label: 'TestUser 8'},
+      {id: 9, label: 'TestUser 9'},
+      {id: 10, label: 'TestUser 10'}
     ]);
     this.networkedges = new vis.DataSet([
       {from: 1, to: 2},
@@ -53,7 +58,10 @@ export class VisualizationsComponent {
       {from: 3, to: 5},
       {from: 3, to: 4},
       {from: 3, to: 2},
-      {from: 2, to: 4}
+      {from: 2, to: 4},
+      {from: 8, to: 9},
+      {from: 10, to: 9},
+      {from: 8, to: 10}
     ]);
     this.networkcontainer = document.getElementById('mynetwork');
     this.networkdata = {
