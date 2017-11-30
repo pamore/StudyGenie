@@ -25,3 +25,28 @@
 .navbar-text {
   margin-left: 15px;
 }
+
+.info_layer {
+  background-color: white;
+  width: 100%;
+  max-width: 501px !important;
+  max-width: 50rem !important;
+  margin-top: 40px !important;
+  margin-top: 4rem !important;
+  padding: 75px 16px !important;
+  padding: 7.5rem 1.6rem !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  box-shadow: 0 3rem 5rem -2rem rgba(0, 0, 0, 0.2);
+}

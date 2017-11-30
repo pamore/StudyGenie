@@ -85,6 +85,10 @@ export function Modal($rootScope, $uibModal) {
             modal_title = 'View/Delete Note';
             modal_html = '<p> View/Edit the note with id : <strong>' + note_id + '</strong></p>';
           }
+          else if(modal_type == 'add_note'){
+            modal_title = 'Add a new note';
+            modal_html = '<p> Please fill up the following details to add a new note</p>';
+          }
           else
           {
             modal_title = 'Create group';
