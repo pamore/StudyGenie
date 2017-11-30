@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 const express = require('express');
 const router = express.Router();
 // const fs = require('fs');
@@ -60,20 +61,35 @@ const ElasticsearchCSV = require('elasticsearch-csv');
 // }
 // create an instance of the importer with options
 let esCSV = new ElasticsearchCSV({
-  es: { index: 'adaptivewebfinalproject', type: 'document', host: 'localhost:9200' },
-  csv: { filePath: 'D:/Desktop/ASU Study/Adaptive web/Adaptive project/StudyGenie/assets/notecards.csv', headers: true }
+  es: {index: 'adaptivewebfinalproject', type: 'document', host: 'localhost:9200'},
+  csv: {filePath: 'D:/Desktop/ASU Study/Adaptive web/Adaptive project/StudyGenie/assets/notecards.csv', headers: true}
 });
 
 /* POST document to be indexed */
-router.post('/addAllDocuments', function(req, res, next) {
-  esCSV.import()
-    .then(function(response) {
-      // Elasticsearch response for the bulk insert
-      console.log('csv imported');
-    }, function(err) {
-      // throw error
-      throw err;
-    });
+router.post('/addAllDocuments', (req, res, next) => {
+  elastic.indexExists().then(function (exists) {
+    if(exists) {
+      return elastic.deleteIndex();
+    }
+  })
+    .then(function() {
+    return esCSV.import()
+      .then(function(response) {
+        // Elasticsearch response for the bulk insert
+        console.log('csv imported');
+      }, function(err) {
+        // throw error
+        throw err;
+      });
+  });
 });
 
-module.exports = router;
+router.get('/search/:searchstring', function(req, res, next) {
+  console.log(req.params);
+  elastic.getSuggestions(req.params.searchstring).then(function(response) {
+    console.log(response);
+    res.json(response);
+  });
+});
+
+  module.exports = router;

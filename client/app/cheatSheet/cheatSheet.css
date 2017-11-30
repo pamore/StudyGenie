@@ -5,13 +5,12 @@
 
 .CSList{
   width: 20%;
-  border-right: thick solid #000000;
 }
 .CSListUL{
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 25%;
+  /*width: 25%;*/
   background-color: #f1f1f1;
   position: relative;
   height: 100%;
@@ -35,8 +34,9 @@
 
 .CSView{
   padding:1px 16px;
-  height: 800px;
-  width: 750px;
+  min-height: 800px;
+  min-width: 750px;
+  border: groove 1px;
 }
 .CSViewEdit{
   width:100%;
@@ -47,6 +47,7 @@
 .notesList{
   height:800px;
   overflow:auto;
+  width: auto;
 }
 
 .noteTextArea{
@@ -132,4 +133,46 @@
   border: 2px outset #eee;
   background-clip: border-box;
   background-size: contain;
+}
+
+.search-box {
+  display: inline-block;
+  width: 100%;
+  border-radius: 3px;
+  padding: 4px 55px 4px 15px;
+  position: relative;
+  background: #fff;
+  border: 1px solid #ddd;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+.search-box.hovered, .search-box:hover, .search-box:active {
+  border: 1px solid #aaa;
+}
+.search-box input[type=text] {
+  border: none;
+  box-shadow: none;
+  display: inline-block;
+  padding: 0;
+  background: transparent;
+}
+.search-box input[type=text]:hover, .search-box input[type=text]:focus, .search-box input[type=text]:active {
+  box-shadow: none;
+}
+.search-box .search-btn {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  color: #aaa;
+  border-radius: 3px;
+  font-size: 21px;
+  padding: 5px 10px 1px;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+.search-box .search-btn:hover {
+  color: #fff;
+  background-color: #8FBE00;
 }

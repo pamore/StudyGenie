@@ -12,7 +12,7 @@
       <div >
       </div>
     <div drop-container  on-drop="cheatSheetCtrl.onDrop($event, $dragData)" class="dr-tile-empty">
-      <ul class="noteTextArea nav nav-tabs" ng-repeat="cheatsheetNote in cheatSheetCtrl.cheatSheetList" >
+      <ul class="noteTextArea nav nav-tabs " ng-repeat="cheatsheetNote in cheatSheetCtrl.cheatSheetList" >
         <li class ="noteText dr-tile-img" ng-click="cheatSheetCtrl.openNote(cheatsheetNote)">
           <a href="#">
             <p><b><u>Title</u></b> : {{cheatsheetNote.title}}</p>
@@ -25,8 +25,14 @@
     </div>
   </div>
   <div class="notesList">
-  <div >
-  </div>
+    <div class='search-box'>
+      <form class='search-form'>
+        <input class='form-control' placeholder='ex: Ruby, Rails, Java, CSS, Javascript, Node, C#, SQL, etc.' type='text' ng-model="cheatSheetCtrl.searchstring">
+        <button class='btn btn-link search-btn' ng-click="cheatSheetCtrl.search()">
+          <i class='glyphicon glyphicon-search'></i>
+        </button>
+      </form>
+    </div>
     <ul class="noteTextArea nav nav-tabs" ng-repeat="Note in cheatSheetCtrl.notesText">
       <li class ="noteText dr-tile-img" drag-container="true" drag-data="Note" ng-click="cheatSheetCtrl.openNote(Note)">
         <a href="#">

@@ -12,12 +12,14 @@ export class CheatSheetComponent {
   dragSrcEl = null;
   Modal;
   selected;
+  searchstring;
   constructor($http, Modal) {
     'ngInject';
     this.message = 'Hello';
     this.$http = $http;
     this.Modal = Modal;
     this.selected = 1;
+    this.searchstring = '';
   }
   $onInit() {
     this.$http.get('/api/notes')
@@ -48,6 +50,15 @@ export class CheatSheetComponent {
       });
     });
     openModal('note', note.n_id, note.title, note.content);
+  }
+  search() {
+    this.$http.get('/api/elasticsearch/search/' + this.searchstring)
+      .then(response => {
+        this.notesText = [];
+        for(let i = 0; i < response.data.hits.hits.length; i++) {
+          this.notesText.push(response.data.hits.hits[i]._source);
+        }
+      });
   }
 }
 // CheatSheetComponent.$inject = ['$http', dragDrop, uiRouter];
