@@ -6,9 +6,21 @@ const uiRouter = require('angular-ui-router');
 import routes from './groups.routes';
 
 export class GroupsComponent {
+  Modal;
   /*@ngInject*/
-  constructor() {
+  constructor(Modal) {
     this.message = 'Hello';
+    this.Modal = Modal;
+  }
+
+  openGroupModal() {
+    let openModal = this.Modal.confirm.delete(function() {
+      // formData contains the data collected in the modal
+      // console.log(formData.title);
+      // console.log(formData.content);
+      // console.log(note_id);
+    });
+    openModal('group');
   }
 }
 

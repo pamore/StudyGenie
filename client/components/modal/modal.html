@@ -6,7 +6,7 @@
 <div class="modal-body">
   <p ng-if="modal.text" ng-bind="modal.text"></p>
   <div ng-if="modal.html" ng-bind-html="modal.html"></div>
-  <form class="form rating-form" name="formData">
+  <form class="form rating-form" name="formData" ng-if="modal.type == 'note'">
     <div class="form-group">
       <label>Title</label>
       <input class="form-control" type="text" ng-model="modal.formData.title"/>
@@ -79,6 +79,35 @@
     </div>
     <br/>
 
+  </form>
+  <form id="contact" action="" method="post" ng-if="modal.type == 'group'">
+    <!--<h3>Create groups</h3>-->
+    <!--<h4>Contact us today, and get reply with in 24 hours!</h4>-->
+
+    <label> Group Name:</label>
+    <input placeholder="Name of your group" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <br/>
+    <fieldset>
+      <label> Common Interests:</label>
+      <textarea placeholder="Areas in common for everybody in the group" type="text" tabindex="2" required></textarea>
+    </fieldset>
+    <br/>
+    <fieldset>
+      <label> Group Description:</label>
+      <textarea placeholder="Short description about the group" type="text" tabindex="3" required></textarea>
+    </fieldset>
+    <br/>
+    <fieldset>
+      <label> Group members:</label>
+      <textarea placeholder="Names/email addresses of members in the group" type="text" tabindex="4" required></textarea>
+    </fieldset>
+    <br/>
+
+    <!--<fieldset>-->
+
+      <!--<button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>-->
+    <!--</fieldset>-->
   </form>
   <!--&lt;!&ndash; RATING - Form &ndash;&gt;-->
   <!--<form class="rating-form" action="#" method="post" name="rating-movie">-->

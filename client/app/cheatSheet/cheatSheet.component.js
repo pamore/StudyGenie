@@ -47,7 +47,7 @@ export class CheatSheetComponent {
         console.log(response.data);
       });
     });
-    openModal(note.n_id, note.title, note.content);
+    openModal('note', note.n_id, note.title, note.content);
   }
 }
 // CheatSheetComponent.$inject = ['$http', dragDrop, uiRouter];

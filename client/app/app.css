@@ -47,6 +47,7 @@
 @import 'admin/admin.css';
 @import 'cheatSheet/cheatSheet.css';
 @import 'dashboard/dashboard.css';
+@import 'groups/groups.css';
 @import 'main/main.css';
 @import 'profile/profile.css';
 @import 'visualizations/visualizations.css';

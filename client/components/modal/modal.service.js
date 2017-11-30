@@ -73,11 +73,23 @@ export function Modal($rootScope, $uibModal) {
           let note_id;
           let title;
           let content;
+          let modal_type;
+          let modal_title;
+          let modal_html;
           args = Array.prototype.slice.call(arguments);
+          modal_type = args.shift();
           note_id = args.shift();
           title = args.shift();
           content = args.shift();
-
+          if(modal_type == 'note') {
+            modal_title = 'View/Delete Note';
+            modal_html = '<p> View/Edit the note with id : <strong>' + note_id + '</strong></p>';
+          }
+          else
+          {
+            modal_title = 'Create group';
+            modal_html = '<p>Fill up the group details</p>';
+          }
           var formData = {};
           formData.title = title;
           formData.content = content;
@@ -86,9 +98,10 @@ export function Modal($rootScope, $uibModal) {
           let deleteModal = openModal({
             modal: {
               formData: formData,
+              type: modal_type,
               dismissable: true,
-              title: 'View/Delete Note',
-              html: '<p> View/Edit the note with id : <strong>' + note_id + '</strong></p>',
+              title: modal_title,
+              html: modal_html,
               buttons: [{
                 classes: 'btn-danger',
                 text: 'Submit',
