@@ -53,3 +53,25 @@
 
 .noteText:hover { box-shadow:0 5px 8px rgba(0,0,0,0.15); }
 .noteText:focus { box-shadow:0 5px 12px rgba(0,0,0,0.2); outline:none; }
+
+
+#fab_add_icon {
+  background-color:green;
+  height:50px;
+  width:50px;
+  border:none;
+  border-radius:50%;
+  box-shadow:0 0 7px rgba(0,0,0,.7);
+  position:absolute;
+  bottom:5%;
+  right:2%;
+  margin:20px;
+  cursor:pointer;
+}
+
+#dash_add_icon {
+  font-size:30px;
+  color:white;
+  line-height:48px;
+  text-align:center;
+}
