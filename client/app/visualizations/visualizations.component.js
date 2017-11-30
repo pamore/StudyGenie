@@ -41,11 +41,11 @@ export class VisualizationsComponent {
     this.verticaldata = [25, 16, 13, 9, 7, 6, 3];
 
     this.networknodes = new vis.DataSet([
-      {id: 1, label: 'User 1'},
-      {id: 2, label: 'User 2'},
-      {id: 3, label: 'User 3'},
-      {id: 4, label: 'User 4'},
-      {id: 5, label: 'User 5'}
+      {id: 1, label: 'TestUser 1'},
+      {id: 2, label: 'TestUser 2'},
+      {id: 3, label: 'TestUser 3'},
+      {id: 4, label: 'TestUser 4'},
+      {id: 5, label: 'TestUser 5'}
     ]);
     this.networkedges = new vis.DataSet([
       {from: 1, to: 2},

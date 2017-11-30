@@ -7,8 +7,7 @@
         Top 7 contributors
       </h3>
       <br/>
-      <br/>
-      <br/>
+
     <canvas  id="base" class="chart-horizontal-bar"
             chart-data="visualizationsCtrl.barChartdata" chart-labels="visualizationsCtrl.barChartlabels" chart-colors = "visualizationsCtrl.barChartcolors" chart-legend="true" >
     </canvas>
@@ -16,6 +15,7 @@
   </div>
   <div class="col-md-3"></div>
 </div>
+<br>
 <div class="row">
   <div class="col-md-3">
   </div>
@@ -25,14 +25,11 @@
         Trending Topics
       </h3>
       <br/>
-      <br/>
-      <br/>
+
       <canvas id="radar" class="chart-base" chart-type="visualizationsCtrl.type"
               chart-data="visualizationsCtrl.radarChartdata" chart-options="visualizationsCtrl.radarChartoptions" chart-labels="visualizationsCtrl.radarChartlabels">
       </canvas>
 
-      <br/>
-      <br/>
       <br/>
 
     </div>
@@ -41,18 +38,19 @@
 
   </div>
 </div>
+<br>
 <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-6">
     <center>
       <button  style="text-align: center" type="button" class="btn btn-primary" ng-click="visualizationsCtrl.toggle()">Toggle</button>
       <br/>
-      <br/>
-      <br/>
+
     </center>
   </div>
   <div class="col-md-3"></div>
 </div>
+<br>
 <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-6">
@@ -61,8 +59,7 @@
         Favorite authors
       </h3>
       <br/>
-      <br/>
-      <br/>
+
     <canvas id="bar" class="chart chart-bar"
             chart-data="visualizationsCtrl.verticaldata" chart-labels="visualizationsCtrl.verticallabels" chart-colors="visualizationsCtrl.verticalcolors">
       </canvas>
@@ -70,17 +67,17 @@
     </div>
   </div>
 </div>
+<br>
 <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-6">
     <div class="row">
       <h3  style="text-align: center">
-        Group Network
+        Top 5 Users & their interactions
       </h3>
       <br/>
-      <br/>
-      <br/>
-      <div id="mynetwork" style="width: 800px;height: 800px;"></div>
+
+      <div id="mynetwork" style="width: 800px;height: 800px;background-color: #f0f0f0"></div>
     </div>
   </div>
 </div>
