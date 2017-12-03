@@ -144,26 +144,27 @@ fieldset {
   text-shadow: 0 -1px 0 rgba(0,0,0,.6);
 }
 .groupmembers label {
+
   font-family: helvetica;
   cursor: pointer;
   display: block;
-  border: solid 1px transparent;
-  width: 448px;
-  height: 40px;
+  /*border: solid 1px transparent;*/
+  /*width: 448px;*/
+  /*height: 40px;*/
   text-align: center;
   line-height: 40px;
-  border-radius: 3px;
+  /*border-radius: 3px;*/
   margin-bottom: 10px;
-  border: solid 1px rgba(0,0,0,.15);
+  /*border: solid 1px rgba(0,0,0,.15);*/
 }
 .groupmembers label:last-child { margin-right: 0; }
 .groupmembers label:hover {
   background: rgba(77, 144, 254, .5);
-  border: solid 1px rgba(0,0,0,.15);
+  /*border: solid 1px rgba(0,0,0,.15);*/
 }
 .groupmembers article {
   height: 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
   -webkit-transition: height .25s linear, opacity .15s linear;
   position: relative;
   top: 5px;
@@ -293,4 +294,21 @@ fieldset {
   color:white;
   line-height:48px;
   text-align:center;
+}
+.groupLogo{
+  width: 200px;
+  height: 200px;
+}
+.groupsIcon{
+  width:50px;
+  height: 50px;
+}
+.groupArea{
+  width: 500px;
+  height: 100%;
+  padding-bottom: 20px;
+}
+.groupName{
+  display: inline-block;
+  float: left;
 }
