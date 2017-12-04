@@ -10,21 +10,24 @@
           <br>
           <br>
           <div class="groupArea">
-            <form class="groupmembers">
+            <form class="groupmembers" ng-repeat="StudyGroup in groupsCtrl.individualgroupText">
               <div class="groupmembers">
 
                 <input class="groupmembers" type="radio" name="size" id="group1" value="group1"/>
-                <label class="groupmembers"  for="group1">Group 1
+                <label class="groupmembers"  for="group1">{{StudyGroup.name}}
                   <img class="groupsIcon" src="https://cdn2.sonosim.com/wp-content/uploads/2015/10/fa-Users.png"/>
                 </label>
+
                 <article class="groupmembers">
+                  <b>Description: {{StudyGroup.description}}</b><br>
+                  <b>Focus of study: {{StudyGroup.domain}}</b>
                   <div class="groupmembers">
-                    <ul>
-                      <li>TestUser 1</li>
-                      <li>TestUser 2</li>
-                    </ul>
+                    <b>Group Members:</b>
+                    <div ng-repeat="userID in StudyGroup.members">
+                      {{userID.user}}
+                    </div>
                     <center>
-                      <button  style="text-align: center" type="button" class="btn btn-primary" >Join</button>
+                      <button  style="text-align: center" type="button" class="btn btn-primary" id={{StudyGroup._id}} >Join</button>
                       <br/>
                       <br/>
                       <br/>
@@ -33,26 +36,26 @@
                 </article>
               </div>
 
-              <div class="groupmembers">
-                <input class="groupmembers" type="radio" name="size" id="group2" value="group2"/>
-                <label class="groupmembers"  for="group2">Group 2
-                  <img class="groupsIcon" src="https://cdn2.sonosim.com/wp-content/uploads/2015/10/fa-Users.png"/>
-                </label>
-                <article class="groupmembers">
-                  <div class="groupmembers">
-                    <ul>
-                      <li>TestUser 3</li>
-                      <li>TestUser 4</li>
-                    </ul>
-                    <center>
-                      <button  style="text-align: center;" type="button" class="btn btn-primary" >Join</button>
-                      <br/>
-                      <br/>
-                      <br/>
-                    </center>
-                  </div>
-                </article>
-              </div>
+              <!--<div class="groupmembers">-->
+                <!--<input class="groupmembers" type="radio" name="size" id="group2" value="group2"/>-->
+                <!--<label class="groupmembers"  for="group2">Group 2-->
+                  <!--<img class="groupsIcon" src="https://cdn2.sonosim.com/wp-content/uploads/2015/10/fa-Users.png"/>-->
+                <!--</label>-->
+                <!--<article class="groupmembers">-->
+                  <!--<div class="groupmembers">-->
+                    <!--<ul>-->
+                      <!--<li>TestUser 3</li>-->
+                      <!--<li>TestUser 4</li>-->
+                    <!--</ul>-->
+                    <!--<center>-->
+                      <!--<button  style="text-align: center;" type="button" class="btn btn-primary" >Join</button>-->
+                      <!--<br/>-->
+                      <!--<br/>-->
+                      <!--<br/>-->
+                    <!--</center>-->
+                  <!--</div>-->
+                <!--</article>-->
+              <!--</div>-->
 
             </form>
           </div>

@@ -6,11 +6,23 @@ const uiRouter = require('angular-ui-router');
 import routes from './groups.routes';
 
 export class GroupsComponent {
+  individualgroupText;
   Modal;
   /*@ngInject*/
-  constructor(Modal) {
+  constructor($http, Modal) {
     this.message = 'Hello';
+    this.$http = $http;
     this.Modal = Modal;
+  }
+
+  $onInit() {
+    this.$http.get('/api/studyGroups')
+      .then(response => {
+        this.groupText = response.data;
+        let temp = this.groupText;
+        this.individualgroupText = temp;
+        console.log('text =' + this.individualgroupText[0].name);
+      });
   }
 
   openGroupModal() {

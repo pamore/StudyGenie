@@ -169,7 +169,8 @@ fieldset {
   position: relative;
   top: 5px;
   margin-bottom: 0;
-  padding: 0 10px;
+  padding: 0 10%;
+  margin-left: 10px;
   color: #333;
   font-family: helvetica;
   font-size: 12px;
