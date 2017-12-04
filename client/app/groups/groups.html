@@ -23,10 +23,10 @@
                   <b>Focus of study: </b> {{StudyGroup.domain}}
                   <div class="groupmembers">
                     <b>Group Members:</b>
-                    <div ng-repeat="userID in StudyGroup.members">
-                      {{userID.user}}
+                    <div ng-repeat="users in StudyGroup.members">
+                      {{users.user}}
                     </div>
-                    <div class="groupErrorMsg {{StudyGroup._id}}">You are a member!</div>
+                    <div class="groupErrorMsg Group_{{StudyGroup._id}}">You are a member!</div>
                     <center>
                       <button  style="text-align: center" type="button" class="btn btn-primary" ng-click="groupsCtrl.joinGroup(StudyGroup)" >Join</button>
                       <br/>

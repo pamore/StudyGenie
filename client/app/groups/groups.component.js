@@ -49,16 +49,16 @@ export class GroupsComponent {
     var eligible = true;
     //check if userID in the StudyGroup
     for(var i = 0; i < groupObj.members.length; i++) {
-      if(groupObj.members[i].userID == this.currentUser._id) {
+      if(groupObj.members[i].userID == this.currentUser.email) {
         eligible = false;
-        var temp = '.' + groupObj._id;
+        var temp = '.Group_' + groupObj._id;
         angular.element(document.querySelector(temp)).css('display', 'block');
         break;
       }
     }
     console.log('Group Id:', groupObj.name);
     if(eligible) {
-      groupObj.members.push({'userID': this.currentUser._id, 'user': this.currentUser.name, 'timestamp': Date.now().toString()});
+      groupObj.members.push({'userID': this.currentUser.email, 'user': this.currentUser.name, 'timestamp': Date.now().toString()});
       console.log('Groups:', groupObj.members);
       //let body = JSON.stringify(groupObj);
       this.$http.put('/api/studyGroups/' + groupObj._id, groupObj).then(response => {
