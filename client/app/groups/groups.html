@@ -10,11 +10,11 @@
           <br>
           <br>
           <div class="groupArea">
-            <form class="groupmembers" ng-repeat="StudyGroup in groupsCtrl.individualgroupText">
-              <div class="groupmembers">
+            <form class="groupmembers">
+              <div class="groupmembers"  ng-repeat="StudyGroup in groupsCtrl.individualgroupText">
 
-                <input class="groupmembers" type="radio" name="size" id="group1" value="group1"/>
-                <label class="groupmembers"  for="group1">{{StudyGroup.name}}
+                <input class="groupmembers" type="radio" name="size" id={{StudyGroup._id}} value={{StudyGroup._id}}/>
+                <label class="groupmembers"  for={{StudyGroup._id}}>{{StudyGroup.name}}
                   <img class="groupsIcon" src="https://cdn2.sonosim.com/wp-content/uploads/2015/10/fa-Users.png"/>
                 </label>
 
@@ -27,7 +27,7 @@
                       {{userID.user}}
                     </div>
                     <center>
-                      <button  style="text-align: center" type="button" class="btn btn-primary" id={{StudyGroup._id}} >Join</button>
+                      <button  style="text-align: center" type="button" class="btn btn-primary"  >Join</button>
                       <br/>
                       <br/>
                       <br/>
