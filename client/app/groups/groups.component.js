@@ -7,12 +7,14 @@ import routes from './groups.routes';
 
 export class GroupsComponent {
   individualgroupText;
+  currentUser;
   Modal;
   /*@ngInject*/
-  constructor($http, Modal) {
+  constructor($http, Modal, Auth) {
     this.message = 'Hello';
     this.$http = $http;
     this.Modal = Modal;
+    this.Auth = Auth;
   }
 
   $onInit() {
@@ -22,6 +24,15 @@ export class GroupsComponent {
         let temp = this.groupText;
         this.individualgroupText = temp;
         console.log('text =' + this.individualgroupText[0].name);
+      });
+    this.Auth.getCurrentUser().then(response => {
+      // Logged in, redirect to home
+      //this.$state.go('dashboard');
+      this.currentUser = response;
+      console.log('username', response.name);
+    })
+      .catch(err => {
+        this.errors.login = err.message;
       });
   }
 
@@ -33,6 +44,27 @@ export class GroupsComponent {
       // console.log(note_id);
     });
     openModal('group');
+  }
+  joinGroup(groupObj) {
+    var eligible = true;
+    //check if userID in the StudyGroup
+    for(var i = 0; i < groupObj.members.length; i++) {
+      if(groupObj.members[i].userID == this.currentUser._id) {
+        eligible = false;
+        var temp = '.' + groupObj._id;
+        angular.element(document.querySelector(temp)).css('display', 'block');
+        break;
+      }
+    }
+    console.log('Group Id:', groupObj.name);
+    if(eligible) {
+      groupObj.members.push({'userID': this.currentUser._id, 'user': this.currentUser.name, 'timestamp': Date.now().toString()});
+      console.log('Groups:', groupObj.members);
+      //let body = JSON.stringify(groupObj);
+      this.$http.put('/api/studyGroups/' + groupObj._id, groupObj).then(response => {
+        console.log('respose=', response.data);
+      });
+    }
   }
 }
 

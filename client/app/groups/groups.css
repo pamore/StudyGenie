@@ -148,6 +148,7 @@ fieldset {
   font-family: helvetica;
   cursor: pointer;
   display: block;
+  font-size: 20px;
   /*border: solid 1px transparent;*/
   /*width: 448px;*/
   /*height: 40px;*/
@@ -173,12 +174,12 @@ fieldset {
   margin-left: 10px;
   color: #333;
   font-family: helvetica;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 18px;
   opacity: 0;
 }
 
-.groupmembers div > input:checked ~ article { height: 145px; opacity: 1; }
+.groupmembers div > input:checked ~ article { height: 165px; opacity: 1; }
 
 /** {*/
   /*box-sizing: border-box;*/
@@ -312,4 +313,8 @@ fieldset {
 .groupName{
   display: inline-block;
   float: left;
+}
+.groupErrorMsg{
+  display: none;
+  color: red;
 }

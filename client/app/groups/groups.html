@@ -19,15 +19,16 @@
                 </label>
 
                 <article class="groupmembers">
-                  <b>Description: {{StudyGroup.description}}</b><br>
-                  <b>Focus of study: {{StudyGroup.domain}}</b>
+                  <b>Description: </b>{{StudyGroup.description}}<br>
+                  <b>Focus of study: </b> {{StudyGroup.domain}}
                   <div class="groupmembers">
                     <b>Group Members:</b>
                     <div ng-repeat="userID in StudyGroup.members">
                       {{userID.user}}
                     </div>
+                    <div class="groupErrorMsg {{StudyGroup._id}}">You are a member!</div>
                     <center>
-                      <button  style="text-align: center" type="button" class="btn btn-primary"  >Join</button>
+                      <button  style="text-align: center" type="button" class="btn btn-primary" ng-click="groupsCtrl.joinGroup(StudyGroup)" >Join</button>
                       <br/>
                       <br/>
                       <br/>

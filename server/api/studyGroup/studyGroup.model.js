@@ -8,7 +8,7 @@ var StudyGroupSchema = new mongoose.Schema({
   description: String,
   domain: String,
   members: [
-    {user: String, timestamp: String}
+    {user: String, timestamp: String, userID: String}
   ]
 });
 
