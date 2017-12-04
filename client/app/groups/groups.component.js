@@ -37,11 +37,11 @@ export class GroupsComponent {
   }
 
   openGroupModal() {
-    let openModal = this.Modal.confirm.delete(function() {
+    let openModal = this.Modal.confirm.delete(function(formData) {
       // formData contains the data collected in the modal
-      // console.log(formData.title);
-      // console.log(formData.content);
-      // console.log(note_id);
+      console.log(formData.groupName);
+      console.log(formData.groupFocus);
+      console.log(formData.groupDescription);
     });
     openModal('group');
   }

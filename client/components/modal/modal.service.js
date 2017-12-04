@@ -1,9 +1,11 @@
+/* eslint-disable camelcase */
 'use strict';
 
 import angular from "angular";
 
 export function Modal($rootScope, $uibModal) {
   'ngInject';
+
   /**
    * Opens a modal
    * @param  {Object} scope      - an object to be merged with modal's scope
@@ -71,34 +73,29 @@ export function Modal($rootScope, $uibModal) {
           // });
           let args;
           let note_id;
-          let title;
-          let content;
+          let note_title;
+          let note_content;
           let modal_type;
           let modal_title;
           let modal_html;
+          let formData = {};
           args = Array.prototype.slice.call(arguments);
           modal_type = args.shift();
-          note_id = args.shift();
-          title = args.shift();
-          content = args.shift();
-          if(modal_type == 'note') {
+          if(modal_type === 'note') {
             modal_title = 'View/Delete Note';
-            modal_html = '<p> View/Edit the note with id : <strong>' + note_id + '</strong></p>';
-          }
-          else if(modal_type == 'add_note'){
+            modal_html = `<p> View/Edit the note with id : <strong>${note_id}</strong></p>`;
+            note_id = args.shift();
+            note_title = args.shift();
+            note_content = args.shift();
+            formData.title = note_title;
+            formData.content = note_content;
+          } else if(modal_type === 'add_note') {
             modal_title = 'Add a new note';
             modal_html = '<p> Please fill up the following details to add a new note</p>';
-          }
-          else
-          {
+          } else {
             modal_title = 'Create group';
             modal_html = '<p>Fill up the group details</p>';
           }
-          var formData = {};
-          formData.title = title;
-          formData.content = content;
-          console.log(title);
-          console.log(content);
           let deleteModal = openModal({
             modal: {
               formData: formData,
@@ -109,20 +106,20 @@ export function Modal($rootScope, $uibModal) {
               buttons: [{
                 classes: 'btn-danger',
                 text: 'Submit',
-                click: function(e) {
+                click: function (e) {
                   deleteModal.close(e);
                 }
               }, {
                 classes: 'btn-default',
                 text: 'Cancel',
-                click: function(e) {
+                click: function (e) {
                   deleteModal.dismiss(e);
                 }
               }]
             }
           }, 'modal-danger');
 
-          deleteModal.result.then(function(event) {
+          deleteModal.result.then(function (event) {
             del.apply(event, [formData, note_id]);
           });
         };

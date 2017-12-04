@@ -85,17 +85,17 @@
     <!--<h4>Contact us today, and get reply with in 24 hours!</h4>-->
 
     <label> Group Name:</label>
-    <input placeholder="Name of your group" type="text" tabindex="1" required autofocus>
+    <input placeholder="Name of your group" type="text" tabindex="1" required autofocus ng-model="modal.formData.groupName">
     </fieldset>
     <br/>
     <fieldset>
       <label> Focus of the study group:</label>
-      <textarea placeholder="Areas in common for everybody in the group" type="text" tabindex="2" required></textarea>
+      <textarea placeholder="Areas in common for everybody in the group" type="text" tabindex="2" required ng-model="modal.formData.groupFocus"></textarea>
     </fieldset>
     <br/>
     <fieldset>
       <label> Group Description:</label>
-      <textarea placeholder="Short description about the group" type="text" tabindex="3" required></textarea>
+      <textarea placeholder="Short description about the group" type="text" tabindex="3" required ng-model="modal.formData.groupDescription"></textarea>
     </fieldset>
     <br/>
     <fieldset>
