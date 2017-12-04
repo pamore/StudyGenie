@@ -62,7 +62,7 @@ const ElasticsearchCSV = require('elasticsearch-csv');
 // create an instance of the importer with options
 let esCSV = new ElasticsearchCSV({
   es: {index: 'adaptivewebfinalproject', type: 'document', host: 'localhost:9200'},
-  csv: {filePath: 'D:/Desktop/ASU Study/Adaptive web/Adaptive project/StudyGenie/assets/notecards.csv', headers: true}
+  csv: {filePath: './assets/notecards.csv', headers: true}
 });
 
 /* POST document to be indexed */

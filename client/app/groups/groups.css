@@ -144,39 +144,42 @@ fieldset {
   text-shadow: 0 -1px 0 rgba(0,0,0,.6);
 }
 .groupmembers label {
+
   font-family: helvetica;
   cursor: pointer;
   display: block;
-  border: solid 1px transparent;
-  width: 448px;
-  height: 40px;
+  font-size: 20px;
+  /*border: solid 1px transparent;*/
+  /*width: 448px;*/
+  /*height: 40px;*/
   text-align: center;
   line-height: 40px;
-  border-radius: 3px;
+  /*border-radius: 3px;*/
   margin-bottom: 10px;
-  border: solid 1px rgba(0,0,0,.15);
+  /*border: solid 1px rgba(0,0,0,.15);*/
 }
 .groupmembers label:last-child { margin-right: 0; }
 .groupmembers label:hover {
   background: rgba(77, 144, 254, .5);
-  border: solid 1px rgba(0,0,0,.15);
+  /*border: solid 1px rgba(0,0,0,.15);*/
 }
 .groupmembers article {
   height: 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
   -webkit-transition: height .25s linear, opacity .15s linear;
   position: relative;
   top: 5px;
   margin-bottom: 0;
-  padding: 0 10px;
+  padding: 0 10%;
+  margin-left: 10px;
   color: #333;
   font-family: helvetica;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 18px;
   opacity: 0;
 }
 
-.groupmembers div > input:checked ~ article { height: 145px; opacity: 1; }
+.groupmembers div > input:checked ~ article { height: 165px; opacity: 1; }
 
 /** {*/
   /*box-sizing: border-box;*/
@@ -293,4 +296,25 @@ fieldset {
   color:white;
   line-height:48px;
   text-align:center;
+}
+.groupLogo{
+  width: 200px;
+  height: 200px;
+}
+.groupsIcon{
+  width:50px;
+  height: 50px;
+}
+.groupArea{
+  width: 500px;
+  height: 100%;
+  padding-bottom: 20px;
+}
+.groupName{
+  display: inline-block;
+  float: left;
+}
+.groupErrorMsg{
+  display: none;
+  color: red;
 }

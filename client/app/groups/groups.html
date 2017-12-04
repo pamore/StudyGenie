@@ -1,89 +1,63 @@
 <div class="container">
   <div class="row">
-      <div class="col-lg-3"></div>
+      <div class="col-lg-3">
+
+      </div>
       <div class="col-lg-6">
         <div class="row layer">
-          <h3>List of groups</h3>
-          <div>
+          <h3>Study Groups</h3>
+          <img class="groupLogo" src="https://depo.isbul.net/guide-page/482705144.jpg"/>
+          <br>
+          <br>
+          <div class="groupArea">
             <form class="groupmembers">
-              <div class="groupmembers">
-                <input class="groupmembers" type="radio" name="size" id="small" value="small" checked="checked"/>
-                <label class="groupmembers" for="small">Group 1</label>
+              <div class="groupmembers"  ng-repeat="StudyGroup in groupsCtrl.individualgroupText">
+
+                <input class="groupmembers" type="radio" name="size" id={{StudyGroup._id}} value={{StudyGroup._id}}/>
+                <label class="groupmembers"  for={{StudyGroup._id}}>{{StudyGroup.name}}
+                  <img class="groupsIcon" src="https://cdn2.sonosim.com/wp-content/uploads/2015/10/fa-Users.png"/>
+                </label>
+
                 <article class="groupmembers">
+                  <b>Description: </b>{{StudyGroup.description}}<br>
+                  <b>Focus of study: </b> {{StudyGroup.domain}}
                   <div class="groupmembers">
-                    <ul>
-                      <li>
-                        TestUser 1
-                      </li>
-                      <li>
-                        TestUser 2
-                      </li>
-                      <li>
-                        TestUser 3
-                      </li>
-                      <li>
-                        TestUser 4
-                      </li>
-                    </ul>
+                    <b>Group Members:</b>
+                    <div ng-repeat="users in StudyGroup.members">
+                      {{users.user}}
+                    </div>
+                    <div class="groupErrorMsg Group_{{StudyGroup._id}}">You are a member!</div>
+                    <center>
+                      <button  style="text-align: center" type="button" class="btn btn-primary" ng-click="groupsCtrl.joinGroup(StudyGroup)" >Join</button>
+                      <br/>
+                      <br/>
+                      <br/>
+                    </center>
                   </div>
                 </article>
               </div>
-              <div class="groupmembers">
-                <input class="groupmembers" type="radio" name="size" id="medium" value="medium"/>
-                <label class="groupmembers" for="medium">Group 2</label>
-                <article class="groupmembers">
-                  <div class="groupmembers">
-                    <ul>
-                      <li>
-                        TestUser 5
-                      </li>
-                      <li>
-                        TestUser 6
-                      </li>
-                    </ul>
-                  </div>
-                </article>
-              </div>
-              <div>
-                <input class="groupmembers" type="radio" name="size" id="large" value="large"/>
-                <label class="groupmembers" for="large">Group 3</label>
-                <article class="groupmembers">
-                  <div class="groupmembers">
-                    <ul>
-                      <li>
-                        TestUser 7
-                      </li>
-                    </ul>
-                  </div>
-                </article>
-              </div>
-              <div class="groupmembers">
-                <input class="groupmembers" type="radio" name="size" id="xlarge" value="xlarge"/>
-                <label class="groupmembers" for="xlarge">Group 4</label>
-                <article class="groupmembers">
-                  <div class="groupmembers">
-                    <ul>
-                      <li>
-                        TestUser 8
-                      </li>
-                      <li>
-                        TestUser 9
-                      </li>
-                      <li>
-                        TestUser 10
-                      </li>
-                    </ul>
-                  </div>
-                </article>
-              </div>
-              <div>
-                <center>
-                  <button  style="text-align: center" type="button" class="btn btn-primary" >Join</button>
-                  <br/>
-                  <br/>
-                  <br/>
-                </center>
-              </div>
+
+              <!--<div class="groupmembers">-->
+                <!--<input class="groupmembers" type="radio" name="size" id="group2" value="group2"/>-->
+                <!--<label class="groupmembers"  for="group2">Group 2-->
+                  <!--<img class="groupsIcon" src="https://cdn2.sonosim.com/wp-content/uploads/2015/10/fa-Users.png"/>-->
+                <!--</label>-->
+                <!--<article class="groupmembers">-->
+                  <!--<div class="groupmembers">-->
+                    <!--<ul>-->
+                      <!--<li>TestUser 3</li>-->
+                      <!--<li>TestUser 4</li>-->
+                    <!--</ul>-->
+                    <!--<center>-->
+                      <!--<button  style="text-align: center;" type="button" class="btn btn-primary" >Join</button>-->
+                      <!--<br/>-->
+                      <!--<br/>-->
+                      <!--<br/>-->
+                    <!--</center>-->
+                  <!--</div>-->
+                <!--</article>-->
+              <!--</div>-->
+
             </form>
           </div>
         </div>
