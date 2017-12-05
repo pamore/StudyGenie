@@ -21,6 +21,26 @@ export class DashboardComponent {
         this.notesText = response.data;
         let temp = this.notesText;
         this.individualnotesText = temp.slice(5);
+        // let promises = [];
+        // for(let i = 0; i < response.data.length / 10 ; i++) {
+        //   promises.push(this.$http.post('/api/elasticsearch/addAllDocuments', {notes: response.data.slice(i, i + 10)})
+        //     .then(res => {
+        //       console.log(`${res}added documents successfully`);
+        //     }));
+        // }
+        // promises.push(this.$http.post('/api/elasticsearch/addAllDocuments', {notes: response.data.slice(response.data.length - response.data.length % 10, response.data.length)})
+        //   .then(res => {
+        //     console.log(`${res}added documents successfully`);
+        //   }));
+        // // console.log(bulkAddDocs);
+        // Promise.all(promises).then(function(values) {
+        //   console.log(values);
+        //   // res.json(values);
+        // });
+        this.$http.post('/api/elasticsearch/addAllDocuments', {notes: response.data})
+          .then(response => {
+            console.log('added documents successfully');
+          });
       });
   }
 

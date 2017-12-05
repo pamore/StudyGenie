@@ -24,6 +24,10 @@ var server = http.createServer(app);
 require('./config/express').default(app);
 require('./routes').default(app);
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 // Start server
 function startServer() {
   app.angularFullstack = server.listen(config.port, config.ip, function() {
