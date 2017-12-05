@@ -9,12 +9,14 @@
   <form class="form rating-form" name="formData" ng-if="modal.type == 'note' || modal.type == 'add_note'">
     <div class="form-group">
       <label>Title</label>
-      <input class="form-control" type="text" ng-model="modal.formData.title"/>
+      <input class="form-control" type="text" ng-model="modal.formData.title" ng-if="modal.formData.editable == 'true'" />
+      <input class="form-control" type="text" ng-model="modal.formData.title" ng-if="modal.formData.editable == 'false'" readonly/>
     </div>
 
     <div class="form-group">
       <label>Content</label>
-      <textarea class="form-control" type="text" rows="3" ng-model="modal.formData.content"></textarea>
+      <textarea class="form-control" type="text" rows="3" ng-model="modal.formData.content" ng-if="modal.formData.editable == 'true'"></textarea>
+      <textarea class="form-control" type="text" rows="3" ng-model="modal.formData.content" readonly ng-if="modal.formData.editable == 'false'"></textarea>
     </div>
 
     <div class="form-group" ng-if="modal.type == 'note'">

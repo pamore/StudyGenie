@@ -8,6 +8,7 @@ import routes from './groups.routes';
 export class GroupsComponent {
   individualgroupText;
   currentUser;
+  newGroupData;
   Modal;
   /*@ngInject*/
   constructor($http, Modal, Auth) {
@@ -29,7 +30,7 @@ export class GroupsComponent {
       // Logged in, redirect to home
       //this.$state.go('dashboard');
       this.currentUser = response;
-      console.log('username', response.name);
+      console.log('user email', response.email);
     })
       .catch(err => {
         this.errors.login = err.message;
@@ -37,11 +38,30 @@ export class GroupsComponent {
   }
 
   openGroupModal() {
+    let currentUser = this.currentUser;
+    let http = this.$http;
     let openModal = this.Modal.confirm.delete(function(formData) {
       // formData contains the data collected in the modal
-      console.log(formData.groupName);
-      console.log(formData.groupFocus);
-      console.log(formData.groupDescription);
+      this.newGroupData = formData;
+      // //console.log('name=', formData.groupName);
+      // console.log(formData.groupName);
+      // console.log(formData.groupFocus);
+      // console.log(formData.groupDescription);
+      let groupObjNew = {};
+      groupObjNew.name = this.newGroupData.groupName;
+      groupObjNew.description = this.newGroupData.groupDescription;
+      groupObjNew.domain = this.newGroupData.groupFocus;
+      groupObjNew.members = [];
+      let userData = {};
+      console.log('user email', currentUser.email);
+      userData.userID = currentUser.email;
+      userData.user = currentUser.name;
+      userData.timestamp = Date.now().toString();
+      console.log('group obj=', groupObjNew);
+      groupObjNew.members.push(userData);
+      http.post('/api/studyGroups/', groupObjNew).then(response => {
+        console.log('respose_new=', response.data);
+      });
     });
     openModal('group');
   }
