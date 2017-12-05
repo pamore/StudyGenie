@@ -66,11 +66,20 @@ function handleError(res, statusCode) {
 
 // Gets a list of Notess
 export function index(req, res) {
-
   return Notes.find().limit(12).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
+}
 
+// Gets a list of Notes based on Author ID
+export function showByAuthorID(req, res) {
+  return Notes.find().where('author_id')
+    .equals(req.params.author_id)
+    .limit(12)
+    .exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 }
 
 // Gets a single Notes from the DB

@@ -24,17 +24,20 @@ export class GroupsComponent {
         this.groupText = response.data;
         let temp = this.groupText;
         this.individualgroupText = temp;
-        console.log('text =' + this.individualgroupText[0].name);
+        //console.log('text =' + this.individualgroupText[0].name);
       });
     this.Auth.getCurrentUser().then(response => {
       // Logged in, redirect to home
       //this.$state.go('dashboard');
       this.currentUser = response;
-      console.log('user email', response.email);
+      //console.log('user email', response.email);
     })
       .catch(err => {
         this.errors.login = err.message;
       });
+    this.$http.put('/api/studyGroups/' + this.currentUser.email).then(response => {
+      console.log('user notes=', response.data);
+    });
   }
 
   openGroupModal() {
@@ -53,11 +56,11 @@ export class GroupsComponent {
       groupObjNew.domain = this.newGroupData.groupFocus;
       groupObjNew.members = [];
       let userData = {};
-      console.log('user email', currentUser.email);
+      //console.log('user email', currentUser.email);
       userData.userID = currentUser.email;
       userData.user = currentUser.name;
       userData.timestamp = Date.now().toString();
-      console.log('group obj=', groupObjNew);
+      //console.log('group obj=', groupObjNew);
       groupObjNew.members.push(userData);
       http.post('/api/studyGroups/', groupObjNew).then(response => {
         console.log('respose_new=', response.data);
@@ -76,10 +79,10 @@ export class GroupsComponent {
         break;
       }
     }
-    console.log('Group Id:', groupObj.name);
+    //console.log('Group Id:', groupObj.name);
     if(eligible) {
       groupObj.members.push({'userID': this.currentUser.email, 'user': this.currentUser.name, 'timestamp': Date.now().toString()});
-      console.log('Groups:', groupObj.members);
+      //console.log('Groups:', groupObj.members);
       //let body = JSON.stringify(groupObj);
       this.$http.put('/api/studyGroups/' + groupObj._id, groupObj).then(response => {
         console.log('respose=', response.data);

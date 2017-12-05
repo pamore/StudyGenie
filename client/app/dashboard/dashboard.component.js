@@ -9,6 +9,7 @@ export class DashboardComponent {
   $http;
   Modal;
   individualnotesText;
+  currentUsernotesText;
   /*@ngInject*/
   constructor($http, Modal, Auth) {
     this.message = 'Hello';
@@ -16,18 +17,25 @@ export class DashboardComponent {
     this.Modal = Modal;
     this.Auth = Auth;
   }
+  getCurrentUserNotes(currentUserEmail) {
+    this.$http.get('/api/notes/author/' + currentUserEmail)
+      .then(response => {
+        this.currentUsernotesText = response.data;
+      });
+  }
   $onInit() {
     this.$http.get('/api/notes')
       .then(response => {
         this.notesText = response.data;
         let temp = this.notesText;
         this.individualnotesText = temp.slice(5);
+        //console.log('all notes=', this.individualnotesText);
       });
     this.Auth.getCurrentUser().then(response => {
       // Logged in, redirect to home
       //this.$state.go('dashboard');
       this.currentUser = response;
-      console.log('user email', response.email);
+      this.getCurrentUserNotes(this.currentUser.email);
     })
       .catch(err => {
         this.errors.login = err.message;
@@ -38,14 +46,14 @@ export class DashboardComponent {
     var currentUser = this.currentUser;
     var http = this.$http;
     console.log('note opened with id =' + note.n_id);
-    let openModal = this.Modal.confirm.delete(function(formData, note_id)
-    {
+    let openModal = this.Modal.confirm.delete(function(formData, note_id) {
       // formData contains the data collected in the modal
       // console.log(formData.title);
       // console.log(formData.content);
       // console.log(note_id);
       note.title = formData.title;
       note.content = formData.content;
+      note.rating = formData.rating;
       http.put(`/api/notes/${note_id}`, note).then(response => {
         console.log(response.data);
       });

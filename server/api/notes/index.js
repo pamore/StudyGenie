@@ -7,6 +7,7 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:n_id', controller.show);
+router.get('/author/:author_id', controller.showByAuthorID);
 router.post('/', controller.create);
 router.put('/:n_id', controller.upsert);
 router.patch('/:n_id', controller.patch);
