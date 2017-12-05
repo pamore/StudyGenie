@@ -1,10 +1,20 @@
 <div class="cheatSheetDiv">
   <div class="CSList">
-    <ul class="CSListUL">
-      <li class="CSListli" ><a href="#"  ng-class="{'active': cheatSheetCtrl.selected == 1}" ng-click="cheatSheetCtrl.deleteList(1)">Cheat Sheet 1</a></li>
-      <li class="CSListli" ><a href="#" ng-class="{'active': cheatSheetCtrl.selected == 2}" ng-click="cheatSheetCtrl.deleteList(2)">Cheat Sheet 2</a></li>
-      <li class="CSListli" ><a href="#" ng-class="{'active': cheatSheetCtrl.selected == 3}" ng-click="cheatSheetCtrl.deleteList(3)">Cheat Sheet 3</a></li>
+    <ul class="CSListUL " ng-repeat="cheatSheetNumber in cheatSheetCtrl.cheatSheetNumberList">
+      <li class="CSListli col-md-10" ><a href="#"  ng-class="{'active': cheatSheetCtrl.selected == $index + 1}" ng-click="cheatSheetCtrl.openList($index + 1)">Cheat Sheet {{$index + 1}}</a></li>
+      <a href="#" class="col-md-2" ng-click="cheatSheetCtrl.deleteList($index + 1)">
+        <i class="material-icons">delete</i>
+      </a>
+      <!--<li class="CSListli" ><a href="#" ng-class="{'active': cheatSheetCtrl.selected == 2}" ng-click="cheatSheetCtrl.deleteList(2)">Cheat Sheet 2</a></li>-->
+      <!--<li class="CSListli" ><a href="#" ng-class="{'active': cheatSheetCtrl.selected == 3}" ng-click="cheatSheetCtrl.deleteList(3)">Cheat Sheet 3</a></li>-->
     </ul>
+    <div id="fab_cheatsheet" class="col-md-3" ng-click="cheatSheetCtrl.addToList()">
+      <a href="#" >
+        <div id="icon_cheatsheet">
+          +
+        </div>
+      </a>
+    </div>
   </div>
 
   <div  class="CSView">

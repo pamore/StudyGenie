@@ -13,7 +13,7 @@
   /*width: 25%;*/
   background-color: #f1f1f1;
   position: relative;
-  height: 100%;
+  /*height: 100%;*/
   /*overflow-y: auto;*/
 }
 .CSListli a{
@@ -175,4 +175,23 @@
 .search-box .search-btn:hover {
   color: #fff;
   background-color: #8FBE00;
+}
+
+#fab_cheatsheet {
+  background-color:green;
+  height:50px;
+  width:50px;
+  border:none;
+  border-radius:50%;
+  box-shadow:0 0 7px rgba(0,0,0,.7);
+  position:relative;
+  margin:20px;
+  cursor:pointer;
+}
+
+#icon_cheatsheet {
+  font-size:30px;
+  color:white;
+  line-height:48px;
+  text-align:center;
 }

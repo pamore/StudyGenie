@@ -9,6 +9,7 @@ export class CheatSheetComponent {
   $http;
   notesText = [];
   cheatSheetList = [];
+  cheatSheetNumberList = [];
   dragSrcEl = null;
   Modal;
   selected;
@@ -20,6 +21,8 @@ export class CheatSheetComponent {
     this.Modal = Modal;
     this.selected = 1;
     this.searchstring = '';
+    this.cheatSheetNumberList = [[], [], []];
+    this.cheatSheetList = this.cheatSheetNumberList[this.selected - 1];
   }
   $onInit() {
     this.$http.get('/api/notes')
@@ -28,9 +31,16 @@ export class CheatSheetComponent {
         // console.log('Notes text component' + response.data);
       });
   }
-  deleteList(selected) {
-    this.selected = selected;
+  deleteList(index) {
+    this.cheatSheetNumberList.splice(index - 1, 1);
     this.cheatSheetList = [];
+  }
+  openList(index) {
+    this.selected = index;
+    this.cheatSheetList = this.cheatSheetNumberList[index - 1];
+  }
+  addToList() {
+    this.cheatSheetNumberList.push([]);
   }
   onDrop(event, dragdata) {
     this.cheatSheetList.push(dragdata);
