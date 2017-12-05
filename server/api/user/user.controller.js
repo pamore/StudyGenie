@@ -3,6 +3,17 @@
 import User from './user.model';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+import Thing from "../thing/thing.model";
+
+function respondWithResult(res, statusCode) {
+  statusCode = statusCode || 200;
+  return function(entity) {
+    if(entity) {
+      return res.status(statusCode).json(entity);
+    }
+    return null;
+  };
+}
 
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
@@ -63,6 +74,18 @@ export function show(req, res, next) {
     .catch(err => next(err));
 }
 
+/**
+ * Creates or updates cheatsheet
+ */
+export function createOrUpdateCheatsheet(req, res, next) {
+  let userId = req.body._id;
+  if(req.body._id) {
+    Reflect.deleteProperty(req.body, '_id');
+  }
+  return User.findOneAndUpdate({_id: userId}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true}).exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
 /**
  * Deletes a user
  * restriction: 'admin'
