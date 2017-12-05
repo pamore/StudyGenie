@@ -13,7 +13,8 @@ var NotesSchema = new mongoose.Schema({
     rating: Number,
     timestamp: String
   }],
-  avgRating: Number
+  avgRating: Number,
+  markedFavCount: Number
 });
 
 registerEvents(NotesSchema);

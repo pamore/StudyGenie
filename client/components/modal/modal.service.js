@@ -78,6 +78,7 @@ export function Modal($rootScope, $uibModal) {
           let modal_type;
           let modal_title;
           let modal_html;
+          let noteAvgRating;
           let userEmail;
           let noteAuthorEmail;
           let formData = {};
@@ -91,9 +92,11 @@ export function Modal($rootScope, $uibModal) {
             note_title = args.shift();
             note_content = args.shift();
             noteAuthorEmail = args.shift();
+            noteAvgRating = args.shift();
             userEmail = args.shift();
             formData.title = note_title;
             formData.content = note_content;
+            formData.avgRating = noteAvgRating;
             if(userEmail == noteAuthorEmail) {
               formData.editable = 'true';
             } else {
