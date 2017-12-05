@@ -133,7 +133,7 @@ fieldset {
   border-radius: 3px;
   border: solid 1px #ddd;
   width: 450px;
-  height: 355px;
+  height: 100%;
 }
 .groupmembers input { display: none; }
 .groupmembers input:checked + label {

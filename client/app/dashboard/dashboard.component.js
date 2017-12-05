@@ -10,10 +10,11 @@ export class DashboardComponent {
   Modal;
   individualnotesText;
   /*@ngInject*/
-  constructor($http, Modal) {
+  constructor($http, Modal, Auth) {
     this.message = 'Hello';
     this.$http = $http;
     this.Modal = Modal;
+    this.Auth = Auth;
   }
   $onInit() {
     this.$http.get('/api/notes')
@@ -42,12 +43,23 @@ export class DashboardComponent {
             console.log('added documents successfully');
           });
       });
+    this.Auth.getCurrentUser().then(response => {
+      // Logged in, redirect to home
+      //this.$state.go('dashboard');
+      this.currentUser = response;
+      console.log('user email', response.email);
+    })
+      .catch(err => {
+        this.errors.login = err.message;
+      });
   }
 
   openNote(note) {
+    var currentUser = this.currentUser;
     var http = this.$http;
     console.log('note opened with id =' + note.n_id);
-    let openModal = this.Modal.confirm.delete(function(formData, note_id) {
+    let openModal = this.Modal.confirm.delete(function(formData, note_id)
+    {
       // formData contains the data collected in the modal
       // console.log(formData.title);
       // console.log(formData.content);
@@ -58,7 +70,7 @@ export class DashboardComponent {
         console.log(response.data);
       });
     });
-    openModal('note', note.n_id, note.title, note.content);
+    openModal('note', note.n_id, note.title, note.content, note.author_id, currentUser.email);
   }
 
   openAddModal() {

@@ -78,17 +78,29 @@ export function Modal($rootScope, $uibModal) {
           let modal_type;
           let modal_title;
           let modal_html;
+          let userEmail;
+          let noteAuthorEmail;
           let formData = {};
           args = Array.prototype.slice.call(arguments);
           modal_type = args.shift();
           if(modal_type === 'note') {
             modal_title = 'View/Delete Note';
-            modal_html = `<p> View/Edit the note with id : <strong>${note_id}</strong></p>`;
+            //console.log('note_id', note_id);
             note_id = args.shift();
+            modal_html = `<p> <b>Note ID :</b> <strong>${note_id}</strong></p>`;
             note_title = args.shift();
             note_content = args.shift();
+            noteAuthorEmail = args.shift();
+            userEmail = args.shift();
             formData.title = note_title;
             formData.content = note_content;
+            if(userEmail == noteAuthorEmail) {
+              formData.editable = 'true';
+            } else {
+              formData.editable = 'false';
+            }
+            //formData.userEmail = userEmail;
+            //formData.noteAuthorEmail = noteAuthorEmail;
           } else if(modal_type === 'add_note') {
             modal_title = 'Add a new note';
             modal_html = '<p> Please fill up the following details to add a new note</p>';
