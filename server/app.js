@@ -20,9 +20,14 @@ mongoose.connection.on('error', function(err) {
 
 // Setup server
 var app = express();
+// var bodyParser = require('body-parser');
+// app.use(bodyParser.json({limit: '50mb'}));
+// app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 var server = http.createServer(app);
 require('./config/express').default(app);
 require('./routes').default(app);
+
+
 
 // Start server
 function startServer() {

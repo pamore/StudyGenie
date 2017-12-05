@@ -1,5 +1,6 @@
 var elasticsearch = require('elasticsearch');
-
+const express = require('express');
+const router = express.Router();
 var elasticClient = new elasticsearch.Client({
   host: 'localhost:9200',
   log: 'info'
@@ -15,6 +16,7 @@ function deleteIndex() {
     index: indexName
   });
 }
+
 exports.deleteIndex = deleteIndex;
 
 /**
@@ -25,6 +27,7 @@ function initIndex() {
     index: indexName
   });
 }
+
 exports.initIndex = initIndex;
 
 /**
@@ -35,6 +38,7 @@ function indexExists() {
     index: indexName
   });
 }
+
 exports.indexExists = indexExists;
 
 function initMapping() {
@@ -55,6 +59,7 @@ function initMapping() {
     }
   });
 }
+
 exports.initMapping = initMapping;
 
 function addDocument(document) {
@@ -72,6 +77,7 @@ function addDocument(document) {
     }
   });
 }
+
 exports.addDocument = addDocument;
 
 function getSuggestions(input) {
@@ -97,6 +103,7 @@ function getSuggestions(input) {
     }
   })
 }
+
 exports.getSuggestions = getSuggestions;
 
 
@@ -106,4 +113,5 @@ function bulkAdd(document) {
       body: document
     });
 }
+
 exports.bulkAdd = bulkAdd;

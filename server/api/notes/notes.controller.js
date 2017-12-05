@@ -13,10 +13,13 @@
 import jsonpatch from 'fast-json-patch';
 import Notes from './notes.model';
 
+let CurrentNotes;
+
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
     if(entity) {
+      setCurrentNotes(res);
       return res.status(statusCode).json(entity);
     }
     return null;
@@ -66,7 +69,10 @@ function handleError(res, statusCode) {
 
 // Gets a list of Notess
 export function index(req, res) {
-  return Notes.find().limit(12).exec()
+
+
+  return Notes.find()
+    .exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -81,7 +87,6 @@ export function showByAuthorID(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
-
 // Gets a single Notes from the DB
 export function show(req, res) {
   return Notes.findById(req.params.id).limit(10).exec()
@@ -127,3 +132,12 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+
+export function getCurrentNotes() {
+  return CurrentNotes;
+}
+
+export function setCurrentNotes(currentNotes) {
+  CurrentNotes = currentNotes;
+}
+

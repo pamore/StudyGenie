@@ -14,10 +14,10 @@ export class MainController {
   }
 
   $onInit() {
-    this.$http.post('/api/elasticsearch/addAllDocuments')
-      .then(response => {
-        console.log('added documents successfully');
-      });
+    // this.$http.post('/api/elasticsearch/addAllDocuments')
+    //   .then(response => {
+    //     console.log('added documents successfully');
+    //   });
   }
 
   addThing() {
