@@ -47,8 +47,8 @@ export class DashboardComponent {
         //   // res.json(values);
         // });
         this.$http.post('/api/elasticsearch/addAllDocuments', {notes: response.data})
-          .then(response => {
-            console.log('added documents successfully');
+          .then(res => {
+            //console.log('added documents successfully', res);
           });
       });
     this.Auth.getCurrentUser().then(response => {
@@ -65,6 +65,8 @@ export class DashboardComponent {
   openNote(note) {
     var currentUser = this.currentUser;
     var http = this.$http;
+    var noteOpened = note;
+    var currUserTemp = this.currentUser;
     console.log('note opened with id =' + note.n_id);
     let openModal = this.Modal.confirm.delete(function(formData, note_id) {
       // formData contains the data collected in the modal
@@ -73,12 +75,35 @@ export class DashboardComponent {
       // console.log(note_id);
       note.title = formData.title;
       note.content = formData.content;
-      note.rating = formData.rating;
+
+      if(!formData.rating) {
+        //Not rated but viewedby user
+      } else {
+        console.log('Rating=', formData.rating);
+        noteOpened.ratingList.push({'rating': formData.rating, 'timestamp': Date.now().toString()});
+        note.ratingList = noteOpened.ratingList;
+        if(!noteOpened.avgRating) {
+          note.avgRating = formData.rating;
+        } else {
+          note.avgRating = ((parseInt(noteOpened.avgRating, 10) + parseInt(formData.rating, 10)) / (2.0));
+        }
+        //user viewd & rated note
+      }
+      if(formData.favouriteNote) {
+        //note is marked fav
+        console.log('Marked favourite!');
+        if(!noteOpened.markedFavCount) {
+          note.markedFavCount = 1;
+        } else {
+          note.markedFavCount = parseInt(noteOpened.markedFavCount, 10) + 1;
+        }
+      }
+
       http.put(`/api/notes/${note_id}`, note).then(response => {
         console.log(response.data);
       });
     });
-    openModal('note', note.n_id, note.title, note.content, note.author_id, currentUser.email);
+    openModal('note', note.n_id, note.title, note.content, note.author_id, note.avgRating, currentUser.email);
   }
 
   openAddModal() {
