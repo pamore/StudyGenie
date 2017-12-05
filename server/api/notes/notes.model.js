@@ -8,7 +8,12 @@ var NotesSchema = new mongoose.Schema({
   author_id: String,
   title: String,
   content: String,
-  type: Number
+  type: Number,
+  ratingList: [{
+    rating: Number,
+    timestamp: String
+  }],
+  avgRating: Number
 });
 
 registerEvents(NotesSchema);
