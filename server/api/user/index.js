@@ -12,5 +12,6 @@ router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
-router.post('/cheatsheet/', auth.isAuthenticated(), controller.createOrUpdateCheatsheet);
+router.post('/updateUser', auth.isAuthenticated(), controller.updateUser);
+// router.post('/studyProfile/', auth.isAuthenticated(), controller.updateUser);
 module.exports = router;

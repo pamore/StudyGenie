@@ -35,6 +35,11 @@ var UserSchema = new Schema({
     }
   },
   cheatSheet: [],
+  interests: String,
+  weakness: String,
+  strengths: String,
+  coursework: String,
+  otherinfo: String,
   provider: String,
   salt: String,
   facebook: {},

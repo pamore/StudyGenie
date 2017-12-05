@@ -75,9 +75,9 @@ export function show(req, res, next) {
 }
 
 /**
- * Creates or updates cheatsheet
+ * Creates or updates cheatsheet or study profile
  */
-export function createOrUpdateCheatsheet(req, res, next) {
+export function updateUser(req, res, next) {
   let userId = req.body._id;
   if(req.body._id) {
     Reflect.deleteProperty(req.body, '_id');

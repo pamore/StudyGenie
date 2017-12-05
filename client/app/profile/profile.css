@@ -13,6 +13,8 @@
   text-rendering:optimizeLegibility;
 }
 
+
+
 /*body {*/
   /*font-family:"Open Sans", Helvetica, Arial, sans-serif;*/
   /*font-weight:300;*/
@@ -119,4 +121,12 @@ fieldset {
 }
 :-ms-input-placeholder {
   color:#888;
+}
+
+.success-msg {
+  color: #270;
+  background-color: #DFF2BF;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
 }

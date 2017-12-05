@@ -57,7 +57,7 @@ export class CheatSheetComponent {
   }
   saveList() {
     this.currentUser.cheatSheet = this.cheatSheetNumberList;
-    this.$http.post('/api/users/cheatsheet/', this.currentUser)
+    this.$http.post('/api/users/updateUser', this.currentUser)
       .then(response => {
         console.log(response);
         // console.log('Notes text component' + response.data);

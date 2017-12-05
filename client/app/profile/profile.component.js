@@ -7,8 +7,29 @@ import routes from './profile.routes';
 
 export class ProfileComponent {
   /*@ngInject*/
-  constructor() {
-    this.message = 'Hello';
+  Auth;
+  $http;
+  currentUser;
+  successFlag;
+  constructor(Auth, $http) {
+    'ngInject';
+    this.successFlag = false;
+    this.Auth = Auth;
+    this.$http = $http;
+    this.Auth.getCurrentUser().then(response => {
+      this.currentUser = response;
+    });
+  }
+
+  createOrUpdateUserProfile() {
+    // console.log(this.currentUser);
+    console.log('****');
+    this.$http.post('/api/users/updateUser', this.currentUser)
+      .then(response => {
+        console.log(response);
+        this.successFlag = true;
+        // console.log('Notes text component' + response.data);
+      });
   }
 }
 
