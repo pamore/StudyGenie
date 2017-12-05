@@ -75,19 +75,18 @@ export class DashboardComponent {
       // console.log(note_id);
       note.title = formData.title;
       note.content = formData.content;
-
+      if(!currUserTemp.notesViewd){currUserTemp.notesViewd = [note_id];}else{currUserTemp.notesViewd.push(note_id);}
       if(!formData.rating) {
         //Not rated but viewedby user
       } else {
         console.log('Rating=', formData.rating);
         noteOpened.ratingList.push({'rating': formData.rating, 'timestamp': Date.now().toString()});
         note.ratingList = noteOpened.ratingList;
-        if(!noteOpened.avgRating) {
-          note.avgRating = formData.rating;
-        } else {
-          note.avgRating = ((parseInt(noteOpened.avgRating, 10) + parseInt(formData.rating, 10)) / (2.0));
-        }
+        if(!noteOpened.avgRating) {note.avgRating = formData.rating;}
+        else { note.avgRating = ((parseInt(noteOpened.avgRating, 10) + parseInt(formData.rating, 10)) / (2.0));}
         //user viewd & rated note
+        if(!currUserTemp.notesRated){currUserTemp.notesRated = [note_id];}
+        else{currUserTemp.notesRated.push(note_id);}
       }
       if(formData.favouriteNote) {
         //note is marked fav
@@ -97,10 +96,19 @@ export class DashboardComponent {
         } else {
           note.markedFavCount = parseInt(noteOpened.markedFavCount, 10) + 1;
         }
+        if(!currUserTemp.notesFavourite){currUserTemp.notesFavourite = [note_id];} else{currUserTemp.notesFavourite.push(note_id);}
+        if(!currUserTemp.authorFavourite){currUserTemp.authorFavourite = [note.author_id];} else{currUserTemp.authorFavourite.push(note.author_id);}
       }
 
       http.put(`/api/notes/${note_id}`, note).then(response => {
         console.log(response.data);
+        //Update user
+        //this.currentUser = currUserTemp;
+        http.post('/api/users/updateUser', currUserTemp)
+          .then(res => {
+            console.log(res);
+            // console.log('Notes text component' + response.data);
+          });
       });
     });
     openModal('note', note.n_id, note.title, note.content, note.author_id, note.avgRating, currentUser.email);
