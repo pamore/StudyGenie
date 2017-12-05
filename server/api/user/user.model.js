@@ -34,6 +34,7 @@ var UserSchema = new Schema({
       }
     }
   },
+  cheatSheet: [],
   provider: String,
   salt: String,
   facebook: {},

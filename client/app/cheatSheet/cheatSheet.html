@@ -8,11 +8,17 @@
       <!--<li class="CSListli" ><a href="#" ng-class="{'active': cheatSheetCtrl.selected == 2}" ng-click="cheatSheetCtrl.deleteList(2)">Cheat Sheet 2</a></li>-->
       <!--<li class="CSListli" ><a href="#" ng-class="{'active': cheatSheetCtrl.selected == 3}" ng-click="cheatSheetCtrl.deleteList(3)">Cheat Sheet 3</a></li>-->
     </ul>
-    <div id="fab_cheatsheet" class="col-md-3" ng-click="cheatSheetCtrl.addToList()">
+    <div id="fab_cheatsheet" class="col-md-3" ng-click="cheatSheetCtrl.addToList()" >
       <a href="#" >
         <div id="icon_cheatsheet">
           +
         </div>
+      </a>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-3" >
+      <a href="#"  ng-click="cheatSheetCtrl.saveList()">
+        <i class="material-icons md-36" style="margin: 20px; font-size: 48px">save</i>
       </a>
     </div>
   </div>
@@ -22,7 +28,7 @@
       <div >
       </div>
     <div drop-container  on-drop="cheatSheetCtrl.onDrop($event, $dragData)" class="dr-tile-empty">
-      <ul class="noteTextArea nav nav-tabs " ng-repeat="cheatsheetNote in cheatSheetCtrl.cheatSheetList" >
+      <ul class="noteTextArea nav nav-tabs " ng-repeat="cheatsheetNote in cheatSheetCtrl.cheatSheetList track by $index" >
         <li class ="noteText dr-tile-img" ng-click="cheatSheetCtrl.openNote(cheatsheetNote)">
           <a href="#">
             <p><b><u>Title</u></b> : {{cheatsheetNote.title}}</p>

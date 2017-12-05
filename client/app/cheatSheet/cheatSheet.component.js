@@ -14,15 +14,25 @@ export class CheatSheetComponent {
   Modal;
   selected;
   searchstring;
-  constructor($http, Modal) {
+  currentUser;
+  Auth;
+  constructor($http, Modal, Auth) {
     'ngInject';
     this.message = 'Hello';
     this.$http = $http;
     this.Modal = Modal;
+    this.Auth = Auth;
     this.selected = 1;
     this.searchstring = '';
     this.cheatSheetNumberList = [[], [], []];
     this.cheatSheetList = this.cheatSheetNumberList[this.selected - 1];
+    this.Auth.getCurrentUser().then(response => {
+      this.currentUser = response;
+      if(this.currentUser && this.currentUser.cheatSheet && this.currentUser.cheatSheet.length !== 0) {
+        this.cheatSheetNumberList = this.currentUser.cheatSheet;
+        this.cheatSheetList = this.cheatSheetNumberList[this.selected - 1];
+      }
+    });
   }
   $onInit() {
     this.$http.get('/api/notes')
@@ -44,6 +54,14 @@ export class CheatSheetComponent {
   }
   onDrop(event, dragdata) {
     this.cheatSheetList.push(dragdata);
+  }
+  saveList() {
+    this.currentUser.cheatSheet = this.cheatSheetNumberList;
+    this.$http.post('/api/users/cheatsheet/', this.currentUser)
+      .then(response => {
+        console.log(response);
+        // console.log('Notes text component' + response.data);
+      });
   }
   openNote(note) {
     var http = this.$http;

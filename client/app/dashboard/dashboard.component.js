@@ -50,7 +50,6 @@ export class DashboardComponent {
           .then(response => {
             console.log('added documents successfully');
           });
->>>>>>> 79a4e0237cfd09cf004d4f813e1376a32bec76ab
       });
     this.Auth.getCurrentUser().then(response => {
       // Logged in, redirect to home
