@@ -39,6 +39,7 @@ var UserSchema = new Schema({
   notesRated: [],
   notesFavourite: [],
   authorFavourite: [],
+  notesCreated: [],
   interests: String,
   weakness: String,
   strengths: String,

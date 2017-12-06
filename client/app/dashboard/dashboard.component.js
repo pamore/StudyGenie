@@ -111,10 +111,23 @@ export class DashboardComponent {
   }
 
   openAddModal() {
-    let openModal = this.Modal.confirm.delete(function (formData) {
+    let currentUser = this.currentUser;
+    let http = this.$http;
+    let openModal = this.Modal.confirm.delete(function (formData, note_id) {
       // formData contains the data collected in the modal
       // console.log(formData.title);
       // console.log(formData.content
+      if(currentUser && currentUser.notesCreated) {
+        currentUser.notesCreated.push(formData.title);
+      }
+      else {
+        currentUser.notesCreated = [formData.title];
+      }
+      http.post('/api/users/updateUser', currentUser)
+        .then(res => {
+          console.log(res);
+          // console.log('Notes text component' + response.data);
+        });
     });
     openModal('add_note');
   }

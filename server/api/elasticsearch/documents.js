@@ -123,7 +123,7 @@ router.get('/search/:searchstring', function(req, res, next) {
       // console.log(response);
       res.json(response);
     });
-  }, 2000);
+  }, 300);
 });
 
 module.exports = router;

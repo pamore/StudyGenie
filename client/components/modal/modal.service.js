@@ -97,7 +97,7 @@ export function Modal($rootScope, $uibModal) {
             formData.title = note_title;
             formData.content = note_content;
             formData.avgRating = noteAvgRating;
-            if(userEmail == noteAuthorEmail) {
+            if(userEmail === noteAuthorEmail) {
               formData.editable = 'true';
             } else {
               formData.editable = 'false';
@@ -105,6 +105,7 @@ export function Modal($rootScope, $uibModal) {
             //formData.userEmail = userEmail;
             //formData.noteAuthorEmail = noteAuthorEmail;
           } else if(modal_type === 'add_note') {
+            formData.editable = 'true';
             modal_title = 'Add a new note';
             modal_html = '<p> Please fill up the following details to add a new note</p>';
           } else {
