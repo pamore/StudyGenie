@@ -9,7 +9,7 @@
         <div style="display: inline-block">
           <h1 class="page-header">Notes:</h1>
           <!--<ul class="noteTextArea">-->
-          <ul class="noteTextArea nav nav-tabs nav-stacked col-md-3 col-lg-3 col-sm-6"
+          <ul ng-if="$ctrl.notesText.length !== 0" class="noteTextArea nav nav-tabs nav-stacked col-md-3 col-lg-3 col-sm-6"
               ng-repeat="Note in $ctrl.notesText">
             <li class="noteText" ng-click="$ctrl.openNote(Note)">
               <a href="#">
@@ -18,6 +18,20 @@
               </a>
             </li>
           </ul>
+          <div ng-if="$ctrl.notesText.length === 0" class="spinner">
+            <div class="b1 se"></div>
+            <div class="b2 se"></div>
+            <div class="b3 se"></div>
+            <div class="b4 se"></div>
+            <div class="b5 se"></div>
+            <div class="b6 se"></div>
+            <div class="b7 se"></div>
+            <div class="b8 se"></div>
+            <div class="b9 se"></div>
+            <div class="b10 se"></div>
+            <div class="b11 se"></div>
+            <div class="b12 se"></div>
+          </div>
         </div>
         <div>
           <h2 class="page-header"> My notes:</h2>

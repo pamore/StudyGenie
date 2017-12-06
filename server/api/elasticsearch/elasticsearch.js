@@ -81,6 +81,21 @@ function addDocument(document) {
 exports.addDocument = addDocument;
 
 function getSuggestions(input) {
+  let query;
+  if(input !== '' && input !== ' ') {
+    query = {
+      multi_match: {
+        query: input,
+        type: 'best_fields',
+        fields: ['title', 'content']
+      }
+    };
+  }
+  else {
+    query = {
+      match_all: {}
+    };
+  }
   return elasticClient.search({
     index: indexName,
     //type: "document",
@@ -92,16 +107,10 @@ function getSuggestions(input) {
       //        // fuzzy: true
       //     }
       // }
-      "size": 10,
-      "query": {
-        "multi_match": {
-          "query": input,
-          "fields": ["title^3", "content"]
-        }
-      }
+      query: query
       // }
     }
-  })
+  });
 }
 
 exports.getSuggestions = getSuggestions;
