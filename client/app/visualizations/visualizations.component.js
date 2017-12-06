@@ -8,7 +8,7 @@ import routes from './visualizations.routes';
 export class VisualizationsComponent {
   barChartlabels;
   barChartcolors;
-  // barChartseries;
+  barChartseries;
   barChartdata;
   radarChartlabels;
   radarChartdata;
@@ -52,7 +52,20 @@ export class VisualizationsComponent {
     //console.log('length() = ', this.allUserData.length());
     let favAuthorsData = {};
     let networkDataSet = [];
+    let userContribution = [];
+    let userRatingsCount = [];
+    let userViewsCount = [];
+    let userFavNoteCount = [];
+    let userAuthFavCount = [];
+    let userCreatedNotesCount = [];
+    let userNamesContribution = [];
     for(var i = 0; i < this.allUserData.length; i++) {
+      userNamesContribution.push(this.allUserData[i].name);
+      userRatingsCount.push(this.allUserData[i].notesRated.length);
+      userViewsCount.push(this.allUserData[i].notesViewd.length);
+      userFavNoteCount.push(this.allUserData[i].notesFavourite.length);
+      userAuthFavCount.push(this.allUserData[i].authorFavourite.length);
+
       networkDataSet.push({id: this.allUserData[i].email, label: this.allUserData[i].name});
       for(var j = 0; j < this.allUserData[i].authorFavourite.length; j++) {
         if(!favAuthorsData[this.allUserData[i].authorFavourite[j]]) {
@@ -61,11 +74,16 @@ export class VisualizationsComponent {
       }
     }
     console.log('favAuthorsData=', favAuthorsData);
-
-    this.barChartlabels = ['User 1', 'User 2', 'User 3', 'User 4', 'User 5', 'User 6', 'User 7'];
+    userContribution.push(userRatingsCount);
+    userContribution.push(userViewsCount);
+    userContribution.push(userFavNoteCount);
+    userContribution.push(userAuthFavCount);
+    if(!userNamesContribution) {userNamesContribution = ['User 1', 'User 2', 'User 3', 'User 4', 'User 5', 'User 6', 'User 7'];}
+    if(!userContribution) {userContribution = [[75, 56, 44, 33, 20, 13, 7], [15, 6, 74, 23, 10, 53, 27], [5, 76, 14, 53, 20, 13, 87]];}
+    this.barChartlabels = userNamesContribution;
     this.barChartcolors = ['rgb(250,2,0)', 'rgb(250,109,33)', 'rgb(154,154,154)', 'rgb(159,204,0)', 'rgb(250,109,33)', 'rgb(154,154,154)', 'rgb(154,154,154)'];
-    // this.barChartseries = ['Users'];
-    this.barChartdata = [75, 56, 44, 33, 20, 13, 7];
+    this.barChartseries = ['# Notes Rated', '# Notes Viewed', '# Notes marked Favourite', '# Authors marked Favourite'];
+    this.barChartdata = userContribution;
 
     this.radarChartlabels = ['Java', 'Python', 'C#', 'C', 'Javascript', 'C++', 'Go'];
     this.radarChartdata = [
