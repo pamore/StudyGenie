@@ -74,15 +74,19 @@ export class VisualizationsComponent {
     this.type = 'radar';
     this.verticallabels = [];
     this.verticaldata = [];
-    for(var keyName in favAuthorsData) {
-      this.verticallabels.push('UserID ' + keyName.toString());
-      this.verticaldata.push(favAuthorsData[parseInt(keyName, 10)]);
+    if(!favAuthorsData) {
+      this.verticallabels = ['TestUser1', 'TestUser1', 'TestUser2', 'TestUser3', 'TestUser4', 'TestUser5', 'TestUser6'];
+      this.verticaldata = [15, 26, 13, 9, 17, 2, 5];
+    } else {
+      for(var keyName in favAuthorsData) {
+        this.verticallabels.push('UserID ' + keyName.toString());
+        this.verticaldata.push(favAuthorsData[parseInt(keyName, 10)]);
+      }
     }
-    //this.verticallabels = ['TestUser1', 'TestUser1', 'TestUser2', 'TestUser3', 'TestUser4', 'TestUser5', 'TestUser6'];
     this.verticalcolors = ['rgb(250,2,10)', 'rgb(200,109,33)', 'rgb(104,154,154)', 'rgb(159,20,0)', 'rgb(25,190,33)', 'rgb(154,15,154)', 'rgb(154,154,15)'];
-    //this.verticaldata = [25, 16, 13, 9, 7, 6, 3];
 
-    let networkDataEdges = []
+
+    let networkDataEdges = [];
     for(i = 0; i < this.studyGroupData.length; i++) {
       for(j = 0; j < this.studyGroupData[i].members.length; j++) {
         for(var k = 0; k < this.studyGroupData[i].members.length; k++) {
