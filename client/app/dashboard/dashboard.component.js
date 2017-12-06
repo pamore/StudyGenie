@@ -5,12 +5,12 @@ const uiRouter = require('angular-ui-router');
 
 import routes from './dashboard.routes';
 
+
 export class DashboardComponent {
   $http;
   Modal;
   individualnotesText;
   currentUsernotesText;
-
   /*@ngInject*/
   constructor($http, Modal, Auth) {
     this.message = 'Hello';
@@ -113,20 +113,47 @@ export class DashboardComponent {
   openAddModal() {
     let currentUser = this.currentUser;
     let http = this.$http;
-    let openModal = this.Modal.confirm.delete(function (formData, note_id) {
+    let openModal = this.Modal.confirm.delete(function (formData) {
       // formData contains the data collected in the modal
       // console.log(formData.title);
       // console.log(formData.content
-      if(currentUser && currentUser.notesCreated) {
-        currentUser.notesCreated.push(formData.title);
-      }
-      else {
-        currentUser.notesCreated = [formData.title];
-      }
-      http.post('/api/users/updateUser', currentUser)
-        .then(res => {
-          console.log(res);
-          // console.log('Notes text component' + response.data);
+      // n_id: Number,
+      //   author_id: String,
+      //   title: String,
+      //   content: String,
+      //   type: Number,
+      //   ratingList: [{
+      //   rating: Number,
+      //   timestamp: String
+      // }],
+      //   avgRating: Number,
+      //   markedFavCount: Number
+      let addedNote = {};
+      addedNote.title = formData.title;
+      addedNote.content = formData.content;
+      addedNote.n_id = Math.random() * (2000 - 600) + 600;
+      addedNote.author_id = currentUser.email;
+      addedNote.type = 0;
+      addedNote.ratingList = [{
+        rating: 0,
+        timestamp: Date.now().toString()
+      }];
+      addedNote.avgRating = 0;
+      addedNote.markedFavCount = 0;
+      http.post('/api/notes/', addedNote)
+        .then(response => {
+          console.log(response);
+          if(currentUser && currentUser.notesCreated) {
+            currentUser.notesCreated.push(response.data._id);
+          }
+          else {
+            currentUser.notesCreated = [response.data._id];
+          }
+          http.post('/api/users/updateUser', currentUser)
+            .then(res => {
+              console.log(res);
+              // console.log('Notes text component' + response.data);
+            });
         });
     });
     openModal('add_note');
