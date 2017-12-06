@@ -21,10 +21,46 @@ export class VisualizationsComponent {
   networknodes;
   networkoptions;
   network;
+  studyGroupData;
+  allUserData;
   type;
-  'ngInject';
-  constructor() {
+  /*@ngInject*/
+  constructor($http, Auth) {
     // this.message = 'Hello';
+    this.message = 'Hello';
+    this.$http = $http;
+    this.Auth = Auth;
+    this.getData();
+  }
+  getData() {
+    //Study Group data
+    let http = this.$http;
+    http.get('/api/studyGroups')
+      .then(response => {
+        this.studyGroupData = response.data;
+        console.log('group data=', this.studyGroupData);
+        //All User Data
+        http.get('/api/users/all')
+          .then(res => {
+            this.allUserData = res.data;
+            console.log('user data=', this.allUserData);
+            this.visualizationMethod();
+          });
+      });
+  }
+  visualizationMethod() {
+    //console.log('length() = ', this.allUserData.length());
+    let favAuthorsData = {};
+    for(var i = 0; i < this.allUserData.length; i++) {
+      for(var j = 0; j < this.allUserData[i].authorFavourite.length; j++) {
+        if(!favAuthorsData[this.allUserData[i].authorFavourite[j]]) {
+          favAuthorsData[this.allUserData[i].authorFavourite[j]] = 1;
+        } else { favAuthorsData[this.allUserData[i].authorFavourite[j]] += 1;}
+      }
+    }
+
+    console.log('favAuthorsData=', favAuthorsData);
+
     this.barChartlabels = ['User 1', 'User 2', 'User 3', 'User 4', 'User 5', 'User 6', 'User 7'];
     this.barChartcolors = ['rgb(250,2,0)', 'rgb(250,109,33)', 'rgb(154,154,154)', 'rgb(159,204,0)', 'rgb(250,109,33)', 'rgb(154,154,154)', 'rgb(154,154,154)'];
     // this.barChartseries = ['Users'];
@@ -35,10 +71,15 @@ export class VisualizationsComponent {
       [65, 59, 90, 81, 56, 55, 40]
     ];
     this.type = 'radar';
-
-    this.verticallabels = ['TestUser1', 'TestUser1', 'TestUser2', 'TestUser3', 'TestUser4', 'TestUser5', 'TestUser6'];
+    this.verticallabels = [];
+    this.verticaldata = [];
+    for(var keyName in favAuthorsData) {
+      this.verticallabels.push('UserID ' + keyName.toString());
+      this.verticaldata.push(favAuthorsData[parseInt(keyName, 10)]);
+    }
+    //this.verticallabels = ['TestUser1', 'TestUser1', 'TestUser2', 'TestUser3', 'TestUser4', 'TestUser5', 'TestUser6'];
     this.verticalcolors = ['rgb(250,2,10)', 'rgb(200,109,33)', 'rgb(104,154,154)', 'rgb(159,20,0)', 'rgb(25,190,33)', 'rgb(154,15,154)', 'rgb(154,154,15)'];
-    this.verticaldata = [25, 16, 13, 9, 7, 6, 3];
+    //this.verticaldata = [25, 16, 13, 9, 7, 6, 3];
 
     this.networknodes = new vis.DataSet([
       {id: 1, label: 'TestUser 1'},
