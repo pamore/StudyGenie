@@ -73,6 +73,14 @@ export function show(req, res, next) {
     })
     .catch(err => next(err));
 }
+/**
+ * Get all users
+ */
+export function allUsers(req, res, next) {
+  return User.find().exec()
+    .then(respondWithResult(res))
+    .catch(err => next(err));
+}
 
 /**
  * Creates or updates cheatsheet or study profile

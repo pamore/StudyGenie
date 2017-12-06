@@ -21,10 +21,31 @@ export class VisualizationsComponent {
   networknodes;
   networkoptions;
   network;
+  studyGroupData;
+  allUserData;
   type;
-  'ngInject';
-  constructor() {
+  /*@ngInject*/
+  constructor($http, Auth) {
     // this.message = 'Hello';
+    this.message = 'Hello';
+    this.$http = $http;
+    this.Auth = Auth;
+    this.visualizationMethod();
+  }
+  visualizationMethod() {
+    //Study Group data
+    this.$http.get('/api/studyGroups')
+      .then(response => {
+        this.studyGroupData = response.data;
+        console.log('group data=', this.studyGroupData);
+      });
+    //All User Data
+    this.$http.get('/api/users/all')
+      .then(response => {
+        this.allUserData = response.data;
+        console.log('user data=', this.allUserData);
+      });
+
     this.barChartlabels = ['User 1', 'User 2', 'User 3', 'User 4', 'User 5', 'User 6', 'User 7'];
     this.barChartcolors = ['rgb(250,2,0)', 'rgb(250,109,33)', 'rgb(154,154,154)', 'rgb(159,204,0)', 'rgb(250,109,33)', 'rgb(154,154,154)', 'rgb(154,154,154)'];
     // this.barChartseries = ['Users'];
