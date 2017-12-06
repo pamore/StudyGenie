@@ -2,7 +2,7 @@ var elasticsearch = require('elasticsearch');
 const express = require('express');
 const router = express.Router();
 var elasticClient = new elasticsearch.Client({
-  host: 'localhost:9200',
+  host: 'https://search-studygenieproject2group1-atv3yyrqq5lvbz66fgr3ovbira.us-east-1.es.amazonaws.com/',
   log: 'info'
 });
 

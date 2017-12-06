@@ -66,10 +66,10 @@ function prepareJsonToIndex(bulk_request, notes) {
 }
 
 // create an instance of the importer with options
-let esCSV = new ElasticsearchCSV({
-  es: {index: 'adaptivewebfinalproject', type: 'document', host: 'localhost:9200'},
-  csv: {filePath: './assets/notecards.csv', headers: true}
-});
+// let esCSV = new ElasticsearchCSV({
+//   es: {index: 'adaptivewebfinalproject', type: 'document', host: 'localhost:9200'},
+//   csv: {filePath: './assets/notecards.csv', headers: true}
+// });
 
 /* POST document to be indexed */
 router.post('/addAllDocuments', (req, res, next) => {
