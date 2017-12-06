@@ -33,13 +33,13 @@ export class DashboardComponent {
       //this.$state.go('dashboard');
       this.currentUser = response;
       this.getCurrentUserNotes(this.currentUser.email);
-      let interests = this.currentUser.interests === undefined ? ' ' : this.currentUser.interests;
-      let coursework = this.currentUser.coursework === undefined ? ' ' : this.currentUser.coursework;
-      let weakness = this.currentUser.weakness === undefined ? ' ' : this.currentUser.weakness;
+      let interests = this.currentUser.interests === undefined ? '' : this.currentUser.interests;
+      let coursework = this.currentUser.coursework === undefined ? '' : this.currentUser.coursework;
+      let weakness = this.currentUser.weakness === undefined ? '' : this.currentUser.weakness;
       let searchstring = `${interests} ${coursework} ${weakness}`;
-      searchstring = searchstring.replace(/\s/g, '');
-      if (searchstring === '' || searchstring === ' ') {
-        searchstring = 'java';
+      // searchstring = searchstring.replace(/\s/g, '');
+      if (searchstring === '' || searchstring === ' ' || searchstring === '  ') {
+        searchstring = 'empty';
       }
       this.$http.get('/api/elasticsearch/search/' + searchstring)
         .then(res => {

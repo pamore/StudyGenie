@@ -82,7 +82,7 @@ exports.addDocument = addDocument;
 
 function getSuggestions(input) {
   let query;
-  if(input !== '' && input !== ' ') {
+  if(input !== '' && input !== ' ' && input !== 'empty') {
     query = {
       multi_match: {
         query: input,
@@ -107,6 +107,8 @@ function getSuggestions(input) {
       //        // fuzzy: true
       //     }
       // }
+      from: 0,
+      size: 10000,
       query: query
       // }
     }
