@@ -51,14 +51,15 @@ export class VisualizationsComponent {
   visualizationMethod() {
     //console.log('length() = ', this.allUserData.length());
     let favAuthorsData = {};
+    let networkDataSet = [];
     for(var i = 0; i < this.allUserData.length; i++) {
+      networkDataSet.push({id: this.allUserData[i].email, label: this.allUserData[i].name});
       for(var j = 0; j < this.allUserData[i].authorFavourite.length; j++) {
         if(!favAuthorsData[this.allUserData[i].authorFavourite[j]]) {
           favAuthorsData[this.allUserData[i].authorFavourite[j]] = 1;
-        } else { favAuthorsData[this.allUserData[i].authorFavourite[j]] += 1;}
+        } else {favAuthorsData[this.allUserData[i].authorFavourite[j]] += 1;}
       }
     }
-
     console.log('favAuthorsData=', favAuthorsData);
 
     this.barChartlabels = ['User 1', 'User 2', 'User 3', 'User 4', 'User 5', 'User 6', 'User 7'];
@@ -73,37 +74,35 @@ export class VisualizationsComponent {
     this.type = 'radar';
     this.verticallabels = [];
     this.verticaldata = [];
-    for(var keyName in favAuthorsData) {
-      this.verticallabels.push('UserID ' + keyName.toString());
-      this.verticaldata.push(favAuthorsData[parseInt(keyName, 10)]);
+    if(!favAuthorsData) {
+      this.verticallabels = ['TestUser1', 'TestUser1', 'TestUser2', 'TestUser3', 'TestUser4', 'TestUser5', 'TestUser6'];
+      this.verticaldata = [15, 26, 13, 9, 17, 2, 5];
+    } else {
+      for(var keyName in favAuthorsData) {
+        this.verticallabels.push('UserID ' + keyName.toString());
+        this.verticaldata.push(favAuthorsData[parseInt(keyName, 10)]);
+      }
     }
-    //this.verticallabels = ['TestUser1', 'TestUser1', 'TestUser2', 'TestUser3', 'TestUser4', 'TestUser5', 'TestUser6'];
     this.verticalcolors = ['rgb(250,2,10)', 'rgb(200,109,33)', 'rgb(104,154,154)', 'rgb(159,20,0)', 'rgb(25,190,33)', 'rgb(154,15,154)', 'rgb(154,154,15)'];
-    //this.verticaldata = [25, 16, 13, 9, 7, 6, 3];
 
-    this.networknodes = new vis.DataSet([
-      {id: 1, label: 'TestUser 1'},
-      {id: 2, label: 'TestUser 2'},
-      {id: 3, label: 'TestUser 3'},
-      {id: 4, label: 'TestUser 4'},
-      {id: 5, label: 'TestUser 5'},
-      {id: 6, label: 'TestUser 6'},
-      {id: 7, label: 'TestUser 7'},
-      {id: 8, label: 'TestUser 8'},
-      {id: 9, label: 'TestUser 9'},
-      {id: 10, label: 'TestUser 10'}
-    ]);
-    this.networkedges = new vis.DataSet([
-      {from: 1, to: 2},
-      {from: 2, to: 5},
-      {from: 3, to: 5},
-      {from: 3, to: 4},
-      {from: 3, to: 2},
-      {from: 2, to: 4},
-      {from: 8, to: 9},
-      {from: 10, to: 9},
-      {from: 8, to: 10}
-    ]);
+
+    let networkDataEdges = [];
+    for(i = 0; i < this.studyGroupData.length; i++) {
+      for(j = 0; j < this.studyGroupData[i].members.length; j++) {
+        for(var k = 0; k < this.studyGroupData[i].members.length; k++) {
+          var member1 = this.studyGroupData[i].members[j];
+          var member2 = this.studyGroupData[i].members[k];
+          if(member1.userID != member2.userID) {
+            networkDataEdges.push({from: member1.userID, to: member2.userID});
+          }
+        }
+      }
+    }
+    console.log('networkDataSet=', networkDataSet);
+    console.log('networkDataEdges=', networkDataEdges);
+
+    this.networknodes = new vis.DataSet(networkDataSet);
+    this.networkedges = new vis.DataSet(networkDataEdges);
     this.networkcontainer = document.getElementById('mynetwork');
     this.networkdata = {
       nodes: this.networknodes,
