@@ -65,6 +65,7 @@ export class VisualizationsComponent {
       userViewsCount.push(this.allUserData[i].notesViewd.length);
       userFavNoteCount.push(this.allUserData[i].notesFavourite.length);
       userAuthFavCount.push(this.allUserData[i].authorFavourite.length);
+      userCreatedNotesCount.push(this.allUserData[i].notesCreated.length);
 
       networkDataSet.push({id: this.allUserData[i].email, label: this.allUserData[i].name});
       for(var j = 0; j < this.allUserData[i].authorFavourite.length; j++) {
@@ -78,11 +79,13 @@ export class VisualizationsComponent {
     userContribution.push(userViewsCount);
     userContribution.push(userFavNoteCount);
     userContribution.push(userAuthFavCount);
+    userContribution.push(userCreatedNotesCount);
+
     if(!userNamesContribution) {userNamesContribution = ['User 1', 'User 2', 'User 3', 'User 4', 'User 5', 'User 6', 'User 7'];}
-    if(!userContribution) {userContribution = [[75, 56, 44, 33, 20, 13, 7], [15, 6, 74, 23, 10, 53, 27], [5, 76, 14, 53, 20, 13, 87]];}
+    if(!userContribution) {userContribution = [[75, 56, 44, 33, 20, 13, 7], [15, 6, 74, 23, 10, 53, 27], [5, 76, 14, 53, 20, 13, 87], [25, 26, 74, 13, 70, 73, 57], [25, 36, 14, 3, 60, 43, 27]];}
     this.barChartlabels = userNamesContribution;
-    this.barChartcolors = ['rgb(250,2,0)', 'rgb(250,109,33)', 'rgb(154,154,154)', 'rgb(159,204,0)', 'rgb(250,109,33)', 'rgb(154,154,154)', 'rgb(154,154,154)'];
-    this.barChartseries = ['# Notes Rated', '# Notes Viewed', '# Notes marked Favourite', '# Authors marked Favourite'];
+    this.barChartcolors = ['#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'];
+    this.barChartseries = ['# Notes Rated', '# Notes Viewed', '# Notes marked Favourite', '# Authors marked Favourite', '# Notes Created'];
     this.barChartdata = userContribution;
 
     this.radarChartlabels = ['Java', 'Python', 'C#', 'C', 'Javascript', 'C++', 'Go'];
