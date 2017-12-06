@@ -49,7 +49,7 @@
         </button>
       </form>
     </div>
-    <ul class="noteTextArea nav nav-tabs" ng-repeat="Note in cheatSheetCtrl.notesText">
+    <ul ng-if="cheatSheetCtrl.notesText.length !== 0" class="noteTextArea nav nav-tabs" ng-repeat="Note in cheatSheetCtrl.notesText">
       <li class ="noteText dr-tile-img" drag-container="true" drag-data="Note" ng-click="cheatSheetCtrl.openNote(Note)">
         <a href="#">
           <p><b><u>Title</u></b> : {{Note.title}}</p>
@@ -57,6 +57,19 @@
         </a>
       </li>
     </ul>
-
+    <div ng-if="cheatSheetCtrl.notesText.length === 0" class="spinner">
+      <div class="b1 se"></div>
+      <div class="b2 se"></div>
+      <div class="b3 se"></div>
+      <div class="b4 se"></div>
+      <div class="b5 se"></div>
+      <div class="b6 se"></div>
+      <div class="b7 se"></div>
+      <div class="b8 se"></div>
+      <div class="b9 se"></div>
+      <div class="b10 se"></div>
+      <div class="b11 se"></div>
+      <div class="b12 se"></div>
+    </div>
   </div>
 </div>
