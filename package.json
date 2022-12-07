@@ -30,7 +30,7 @@
     "elasticsearch": "^14.0.0",
     "elasticsearch-csv": "0.0.3",
     "errorhandler": "^1.4.2",
-    "express": "^4.13.3",
+    "express": "^4.17.3",
     "express-jwt": "^5.0.0",
     "express-session": "^1.11.3",
     "fast-json-patch": "^1.0.0",
